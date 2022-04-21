@@ -1,0 +1,14 @@
+import { Tree } from '@nrwl/devkit';
+import { Names } from './names';
+export declare function getStateDomainFilePath(projectNs: Names, domainNs: Names, fileSuffix: string): string;
+export declare function getStateProjectFilePath(projectNs: Names, fileSuffix: string): string;
+export declare function getModuleFilePath(projectNs: Names, fileSuffix: string): string;
+export declare function getLibIndexPath(projectNs: Names): string;
+export declare function getLibPath(projectNs: Names): string;
+export declare function getStatePath(projectNs: Names): string;
+export declare function getStateDomainPath(projectNs: Names, domainNs: Names): string;
+export declare function getLibFilePath(projectNs: Names, filename: string): string;
+export declare function getModuleTemplatePath(): string;
+export declare function getProjectTemplatePath(): string;
+export declare function getDomainTemplatePath(): string;
+export declare function setLibDirName(tree: Tree): void;

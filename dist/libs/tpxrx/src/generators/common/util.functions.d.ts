@@ -1,0 +1,26 @@
+import { Action, Names } from './names';
+export declare function getActions(name: string): string;
+export declare function getFacade(name: string): string;
+export declare function getEffects(name: string): string;
+export declare function getSelectors(name: string): string;
+export declare function getService(name: string): string;
+export declare function getPending(name: string): string;
+export declare function getSuccess(name: string): string;
+export declare function getFailure(name: string): string;
+export declare function getInjection(propertyName: string, className: string): string;
+export declare function getState(className: string): string;
+export declare function getInitialState(propertyName: string): string;
+export declare function getOns(className: string): string;
+export declare function getRegexMatch(path: string, content: string, regexp: RegExp, ignoreError?: boolean): string;
+export declare function findStartIndex(content: string, regex: RegExp): number;
+export declare function findEndIndex(content: string, startIndex: number, openChar: string, closeChar: string): number;
+export declare function toPural(name: string): string;
+export declare function toPuralFileName(name: string): string;
+export declare function toSingular(name: string): string;
+export declare function toArray(name: string): string;
+export declare function toFormattedNames(names: Names, format: 'project' | 'domain'): {
+    [key: string]: string;
+};
+export declare function firstLetterUppercase(value: string): string;
+export declare function getCrudActions(actionName: string): Action[];
+export declare function isActionTypeReset(actionNs: Names): boolean;
