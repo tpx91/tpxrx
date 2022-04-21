@@ -11,6 +11,7 @@
     "lint-all": "nx workspace-lint && nx run-many --all --parallel --target=lint",
     "test": "nx test",
     "test-all": "nx run-many --all --parallel --target=test",
+    "prepare": "husky install"
   },
   "keywords": [
     "angular",
