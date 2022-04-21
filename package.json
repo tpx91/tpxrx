@@ -1,5 +1,5 @@
 {
-  "name": "tpxrx",
+  "name": "@tpx1/tpxrx",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
