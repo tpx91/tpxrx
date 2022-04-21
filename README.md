@@ -1,105 +1,211 @@
+# tpxrx
+tpxrx is a collection of nx workspace generators for a specific ngrx store pattern. 
+tpxrx combines two goals to improve ngrx stores.
 
+1) Split store contents into smaller parts to make store more clear.
+2) Standardize asset properties to access the state of http requests.
 
-# Tpxrx
+## Installation
+Install @tpx1/tpxrx via npm:
 
-This project was generated using [Nx](https://nx.dev).
+```shell
+npm i @tpx1/tpxrx@latest
+```
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+##Store concepts
+tpxrx combines two goals to improve ngrx stores.
 
-🔎 **Smart, Fast and Extensible Build System**
+1) Split store contents into smaller parts to make store more clear.
+2) Standardize asset properties to access the state of http requests.
 
-## Quick Start & Documentation
+### Split store
+In large projects there might be many store actions, properties, etc. 
+Dozens of actions, effects and selectors can become confusing.
+tpxrx provides a concept to divide contents into domains. 
 
-[Nx Documentation](https://nx.dev/angular)
+The domain concept will be explained by an example:
 
-[10-minute video showing all Nx features](https://nx.dev/getting-started/intro)
+There is a store containing actions to set one or many companies and users and selectors for each property.
+The store will be split into domains, so that each domain contains action, effect, facade, reducer and selector file.
+How many and which items you want to split is your own decision as long as you don't split actions using the same state property. 
+Often it makes sense to use each domain model type in a domain.
+In this example we create a company domain and a user domain.
 
-[Interactive Tutorial](https://nx.dev/tutorial/01-create-application)
+Domains will be aggregated by base reducer, base selectors and base facade.
+They are explained at the end of this chapter.
 
-## Adding capabilities to your workspace
+#### File structure
+The store contains the following file structure:
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+```shell
+| +state
+|--- company
+|---|--- company.actions.ts
+|---|--- company.actions.resets.ts
+|---|--- company.effects.ts
+|---|--- company.facade.ts
+|---|--- company.facade.resets.ts
+|---|--- company.reducer.ts
+|---|--- company.reducer.resets.ts
+|---|--- company.selectors.ts
+|--- user
+|---|--- user.actions.ts
+|---|--- user.actions.resets.ts
+|---|--- user.effects.ts
+|---|--- user.facade.ts
+|---|--- user.facade.resets.ts
+|---|--- user.reducer.ts
+|---|--- user.reducer.resets.ts
+|---|--- user.selectors.ts
+|--- example.facade.ts
+|--- example.reducer.ts
+|--- example.selectors.ts
+| example.module.ts
+```
+Run
+```shell
+nx g @tpx1/tpxrx:lib example --domains=company,user --crud
+```
+inside your nx workspace to generate this file structure and have a look at each file content.
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+#### actions
+*.actions.ts contains all actions of the domain in the same format you already know.
 
-Below are our core plugins:
+*.actions.resets.ts contains all actions to reset properties of the store. 
+Read more about reset actions in chapter Generator commands.
+Use comments for each action group.
 
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
+#### effects
+*.effects.ts contains an injectable class, including all effects of the domain in the same format you already know.
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+#### reducer
+*.reducer.ts contains a state definition, an initialState definition and a function to get ReducerTypes.
 
-## Generate an application
+*.reducer.resets.ts contains a function to get ReducerTypes of resets actions.
+Use comments for each action group.
 
-Run `ng g @nrwl/angular:app my-app` to generate an application.
+#### selectors
+*.selectors.ts contains all selectors of the domain in the same format you already know.
 
-> You can use any of the plugins above to generate applications as well.
+#### facade
+*.facade.ts contains Observable properties of selectors and action functions.
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+*.facade.resets.ts contain resets action functions.
 
-## Generate a library
+#### base reducer
+The base reducer (example.reducer.ts in this example) aggregates all domain reducers.
+The state interface extends all domain state interfaces.
+The initialState Object aggregates all domain initialState Objects.
+The reducer function returns an array of all domain Reducer Types.
 
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
+#### base selectors
+The base selectors file defines a feature selector used by all domain selectors.
 
-> You can also use any of the plugins above to generate libraries as well.
+#### base facade
+The base facade injects all domain facades to provide functions to base facade usage.
+This is the service used in your components to interact with the store.
+It's the only store file visibile for other libs.
+So it's important to export this file in the index.ts
 
-Libraries are shareable across libraries and applications. They can be imported from `@tpxrx/mylib`.
+Use ExampleFacade this way:
 
-## Development server
+```typescript
+this.exampleFacade.userFacade.user$.pipe(
+    filter(u => !!u)
+).subscribe((user) => {
+    console.log(user);
+});
+this.exampleFacade.userFacade.loadUserById('123');
+```
 
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+### Standardization
 
-## Code scaffolding
+In most projects store asset properties are defined in confusing ways. Sometimes there is a loading property, sometimes there is a loadingFinished or a loadingStarted.
+Each developer chooses an own naming and boolean logic. 
+This becomes confusing and might produce errors.
 
-Run `ng g component my-component --project=my-app` to generate a new component.
+tpxrx improves assets behaviour by standardized property names.
+Each action group for http requests (consisting of a default action, success action and failure action) defines a pending property, success property and failure property which indicates if the request is actually pending (waiting for response), successfully responded or responded with an error.
+The action loadUserById implicates the actions loadUserByIdSuccess and loadUserByIdFailure.
+The state defines a property user which is set when the http request is responded successfully.
+Additional the state defines three properties:
 
-## Build
+```typescript
+loadUserByIdPending?: boolean;
+loadUserByIdSuccess?: boolean;
+loadUserByIdError?: Error;
+```
 
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The action listeners for the loadUserById actions underly strict rules for value assignment:
 
-## Running unit tests
+```typescript
+/*
+ * loadUserById
+ */
+on(UserActions.loadUserById, (state) => ({
+  ...state,
+  user: null,
+  loadUserByIdPending: true,
+  loadUserByIdSuccess: false,
+  loadUserByIdError: null,
+})),
+on(UserActions.loadUserByIdSuccess, (state, {user}) => ({
+  ...state,
+  user: user,
+  loadUserByIdPending: false,
+  loadUserByIdSuccess: true,
+})),
+on(UserActions.loadUserByIdFailure, (state, {error}) => ({
+  ...state,
+  loadUserByIdPending: false,
+  loadUserByIdError: error,
+})),
+```
 
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+In default action the data property user might be resetted. 
+It's not required because update and create actions might not want to lose data.
+Pending is set to true, success is set to false and error is set to null. 
+These assignments are required and have to be set in each default action.
 
-Run `nx affected:test` to execute the unit tests affected by a change.
+In success action the data property is set to response data.
+Other properties might also be set, like add user to users array when created.
+Pending is set to false, success is set to true.
 
-## Running end-to-end tests
+In error action there is no data property set.
+Pending is set to false, error is set to error response.
 
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+#### reset properties
+For each property of the state there should be a reset action to set the property to null.
+Additionally add a resetAssets action to reset all action properties of a domain in one.
 
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+## Generator commands
+tpxrx provides a collection of nx generator commands to generate a tpxrx store or parts of it.
 
-## Understand your workspace
+Some commands are available with optional flag --crud.
+If this flag is set actions are generated as crud actions: load all, load by id, create, update, delete, reset.
 
-Run `nx graph` to see a diagram of the dependencies of your projects.
+#### lib
+```shell
+nx g @tpx1/tpxrx:lib example/domain
+nx g @tpx1/tpxrx:lib example/domain --domains=domain1,domain2
+nx g @tpx1/tpxrx:lib example/domain --domains=domain1,domain2 --crud
+```
 
-## Further help
+#### domain
+```shell
+nx g @tpx1/tpxrx:domain domain1 --project=example/domain
+nx g @tpx1/tpxrx:domain domain1 --project=example/domain --crud
+```
 
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
+#### action
+```shell
+nx g @tpx1/tpxrx:action loadPropertyById --project=example/domain --domain=domain1
+nx g @tpx1/tpxrx:action property --project=example/domain --domain=domain1 --crud
+```
 
+#### property
+```shell
+nx g @tpx1/tpxrx:property propertyA --project=example/domain --domain=domain1
+nx g @tpx1/tpxrx:property propertyA --project=example/domain --domain=domain1 --array
+```
 
-
-
-
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
