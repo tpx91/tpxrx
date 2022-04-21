@@ -1,3 +1,10 @@
+## [0.0.6](https://github.com/tpx91/tpxrx/compare/v0.0.5...v0.0.6) (2022-04-21)
+
+
+### Bug Fixes
+
+* package name ([8ca7a79](https://github.com/tpx91/tpxrx/commit/8ca7a798fd116bbdd8a0a131aa96cf08c5c19398))
+
 ## [0.0.5](https://github.com/tpx91/tpxrx/compare/v0.0.4...v0.0.5) (2022-04-21)
 
 
