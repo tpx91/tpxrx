@@ -208,1264 +208,1264 @@ describe('tpxrx lib generator', () => {
 
 const INDEX_CONTENT = 'export * from \'./lib/example-domain.module\';export * from \'./lib/+state/example-domain.facade\';';
 
-const EXAMPLE_DOMAIN_MODULE_EMPTY = 'import { NgModule } from \'@angular/core\';\r\n' +
-  'import { CommonModule } from \'@angular/common\';\r\n' +
-  'import {HttpClientModule} from \'@angular/common/http\';\r\n' +
-  'import {StoreModule} from \'@ngrx/store\';\r\n' +
-  'import * as fromExampleDomain from \'./+state/example-domain.reducer\';\r\n' +
-  'import {EffectsModule} from \'@ngrx/effects\';\r\n' +
-  'import {ExampleDomainFacade} from \'./+state/example-domain.facade\';\r\n\r\n' +
-  '@NgModule({\r\n' +
-  '  imports: [\r\n' +
-  '    CommonModule,\r\n' +
-  '    HttpClientModule,\r\n' +
-  '    StoreModule.forFeature(\r\n' +
-  '      fromExampleDomain.EXAMPLE_DOMAIN_FEATURE_KEY,\r\n' +
-  '      fromExampleDomain.reducer\r\n' +
-  '    ),\r\n' +
-  '    EffectsModule.forFeature([]),\r\n' +
-  '  ],\r\n' +
-  '  providers: [ExampleDomainFacade],\r\n' +
-  '})\r\n' +
-  'export class ExampleDomainModule {}\r\n';
+const EXAMPLE_DOMAIN_MODULE_EMPTY = 'import { NgModule } from \'@angular/core\';\n' +
+  'import { CommonModule } from \'@angular/common\';\n' +
+  'import {HttpClientModule} from \'@angular/common/http\';\n' +
+  'import {StoreModule} from \'@ngrx/store\';\n' +
+  'import * as fromExampleDomain from \'./+state/example-domain.reducer\';\n' +
+  'import {EffectsModule} from \'@ngrx/effects\';\n' +
+  'import {ExampleDomainFacade} from \'./+state/example-domain.facade\';\n\n' +
+  '@NgModule({\n' +
+  '  imports: [\n' +
+  '    CommonModule,\n' +
+  '    HttpClientModule,\n' +
+  '    StoreModule.forFeature(\n' +
+  '      fromExampleDomain.EXAMPLE_DOMAIN_FEATURE_KEY,\n' +
+  '      fromExampleDomain.reducer\n' +
+  '    ),\n' +
+  '    EffectsModule.forFeature([]),\n' +
+  '  ],\n' +
+  '  providers: [ExampleDomainFacade],\n' +
+  '})\n' +
+  'export class ExampleDomainModule {}\n';
 
-const EXAMPLE_DOMAIN_MODULE = 'import { NgModule } from \'@angular/core\';\r\n' +
-  'import { CommonModule } from \'@angular/common\';\r\n' +
-  'import {HttpClientModule} from \'@angular/common/http\';\r\n' +
-  'import {StoreModule} from \'@ngrx/store\';\r\n' +
-  'import * as fromExampleDomain from \'./+state/example-domain.reducer\';\r\n' +
-  'import {EffectsModule} from \'@ngrx/effects\';\r\n' +
+const EXAMPLE_DOMAIN_MODULE = 'import { NgModule } from \'@angular/core\';\n' +
+  'import { CommonModule } from \'@angular/common\';\n' +
+  'import {HttpClientModule} from \'@angular/common/http\';\n' +
+  'import {StoreModule} from \'@ngrx/store\';\n' +
+  'import * as fromExampleDomain from \'./+state/example-domain.reducer\';\n' +
+  'import {EffectsModule} from \'@ngrx/effects\';\n' +
   'import {ExampleDomainFacade} from \'./+state/example-domain.facade\';\n' +
   'import { TestFacade } from \'./+state/test/test.facade\';\n' +
   'import { TestEffects } from \'./+state/test/test.effects\';\n' +
   'import { YeahFacade } from \'./+state/yeah/yeah.facade\';\n' +
-  'import { YeahEffects } from \'./+state/yeah/yeah.effects\';\r\n\r\n' +
-  '@NgModule({\r\n' +
-  '  imports: [\r\n' +
-  '    CommonModule,\r\n' +
-  '    HttpClientModule,\r\n' +
-  '    StoreModule.forFeature(\r\n' +
-  '      fromExampleDomain.EXAMPLE_DOMAIN_FEATURE_KEY,\r\n' +
-  '      fromExampleDomain.reducer\r\n' +
-  '    ),\r\n' +
-  '    EffectsModule.forFeature([TestEffects,YeahEffects,]),\r\n' +
-  '  ],\r\n' +
-  '  providers: [ExampleDomainFacade,TestFacade,YeahFacade,],\r\n' +
-  '})\r\n' +
-  'export class ExampleDomainModule {}\r\n';
+  'import { YeahEffects } from \'./+state/yeah/yeah.effects\';\n\n' +
+  '@NgModule({\n' +
+  '  imports: [\n' +
+  '    CommonModule,\n' +
+  '    HttpClientModule,\n' +
+  '    StoreModule.forFeature(\n' +
+  '      fromExampleDomain.EXAMPLE_DOMAIN_FEATURE_KEY,\n' +
+  '      fromExampleDomain.reducer\n' +
+  '    ),\n' +
+  '    EffectsModule.forFeature([TestEffects,YeahEffects,]),\n' +
+  '  ],\n' +
+  '  providers: [ExampleDomainFacade,TestFacade,YeahFacade,],\n' +
+  '})\n' +
+  'export class ExampleDomainModule {}\n';
 
-const EXAMPLE_DOMAIN_FACADE_EMPTY = 'import { Injectable } from \'@angular/core\';\r\n\r\n' +
-  '@Injectable()\r\n' +
-  'export class ExampleDomainFacade {\r\n' +
-  '  constructor(\r\n' +
-  '  ) {\r\n' +
-  '  }\r\n' +
-  '}\r\n';
+const EXAMPLE_DOMAIN_FACADE_EMPTY = 'import { Injectable } from \'@angular/core\';\n\n' +
+  '@Injectable()\n' +
+  'export class ExampleDomainFacade {\n' +
+  '  constructor(\n' +
+  '  ) {\n' +
+  '  }\n' +
+  '}\n';
 
 const EXAMPLE_DOMAIN_FACADE = 'import { Injectable } from \'@angular/core\';\n' +
   'import { TestFacade } from \'./test/test.facade\';\n' +
-  'import { YeahFacade } from \'./yeah/yeah.facade\';\r\n\r\n' +
-  '@Injectable()\r\n' +
-  'export class ExampleDomainFacade {\r\n' +
+  'import { YeahFacade } from \'./yeah/yeah.facade\';\n\n' +
+  '@Injectable()\n' +
+  'export class ExampleDomainFacade {\n' +
   '  testFacade: TestFacade;\n\n' +
   'yeahFacade: YeahFacade;\n\n' +
-  'constructor(private testFacadeInternal: TestFacade,private yeahFacadeInternal: YeahFacade,) {this.testFacade = this.testFacadeInternal;this.yeahFacade = this.yeahFacadeInternal;}\r\n' +
-  '}\r\n';
+  'constructor(private testFacadeInternal: TestFacade,private yeahFacadeInternal: YeahFacade,) {this.testFacade = this.testFacadeInternal;this.yeahFacade = this.yeahFacadeInternal;}\n' +
+  '}\n';
 
-const EXAMPLE_DOMAIN_REDUCER_EMPTY = 'import { Action, createReducer } from \'@ngrx/store\';\r\n\r\n' +
-  'export const EXAMPLE_DOMAIN_FEATURE_KEY = \'EXAMPLE_DOMAIN\';\r\n\r\n' +
-  'export interface State {}\r\n\r\n' +
-  'export interface ExampleDomainPartialState {\r\n' +
-  '  readonly [EXAMPLE_DOMAIN_FEATURE_KEY]: State;\r\n' +
-  '}\r\n\r\n' +
-  'export const initialState: State = {\r\n' +
-  '};\r\n\r\n' +
-  'const exampleDomainReducer = createReducer(\r\n' +
-  '  initialState,\r\n' +
-  ');\r\n\r\n' +
-  'export function reducer(state: State | undefined, action: Action) {\r\n' +
-  '  return exampleDomainReducer(state, action);\r\n' +
-  '}\r\n';
+const EXAMPLE_DOMAIN_REDUCER_EMPTY = 'import { Action, createReducer } from \'@ngrx/store\';\n\n' +
+  'export const EXAMPLE_DOMAIN_FEATURE_KEY = \'EXAMPLE_DOMAIN\';\n\n' +
+  'export interface State {}\n\n' +
+  'export interface ExampleDomainPartialState {\n' +
+  '  readonly [EXAMPLE_DOMAIN_FEATURE_KEY]: State;\n' +
+  '}\n\n' +
+  'export const initialState: State = {\n' +
+  '};\n\n' +
+  'const exampleDomainReducer = createReducer(\n' +
+  '  initialState,\n' +
+  ');\n\n' +
+  'export function reducer(state: State | undefined, action: Action) {\n' +
+  '  return exampleDomainReducer(state, action);\n' +
+  '}\n';
 
 const EXAMPLE_DOMAIN_REDUCER = 'import { Action, createReducer } from \'@ngrx/store\';\n' +
   'import { TestState, testInitialState, getTestOns } from \'./test/test.reducer\';\n' +
-  'import { YeahState, yeahInitialState, getYeahOns } from \'./yeah/yeah.reducer\';\r\n\r\n' +
-  'export const EXAMPLE_DOMAIN_FEATURE_KEY = \'EXAMPLE_DOMAIN\';\r\n\r\n' +
-  'export interface State extends TestState,YeahState,{}\r\n\r\n' +
-  'export interface ExampleDomainPartialState {\r\n' +
-  '  readonly [EXAMPLE_DOMAIN_FEATURE_KEY]: State;\r\n' +
-  '}\r\n\r\n' +
-  'export const initialState: State = {...testInitialState,...yeahInitialState,};\r\n\r\n' +
-  'const exampleDomainReducer = createReducer(initialState,...getTestOns<State>(),...getYeahOns<State>(),);\r\n\r\n' +
-  'export function reducer(state: State | undefined, action: Action) {\r\n' +
-  '  return exampleDomainReducer(state, action);\r\n' +
-  '}\r\n';
+  'import { YeahState, yeahInitialState, getYeahOns } from \'./yeah/yeah.reducer\';\n\n' +
+  'export const EXAMPLE_DOMAIN_FEATURE_KEY = \'EXAMPLE_DOMAIN\';\n\n' +
+  'export interface State extends TestState,YeahState,{}\n\n' +
+  'export interface ExampleDomainPartialState {\n' +
+  '  readonly [EXAMPLE_DOMAIN_FEATURE_KEY]: State;\n' +
+  '}\n\n' +
+  'export const initialState: State = {...testInitialState,...yeahInitialState,};\n\n' +
+  'const exampleDomainReducer = createReducer(initialState,...getTestOns<State>(),...getYeahOns<State>(),);\n\n' +
+  'export function reducer(state: State | undefined, action: Action) {\n' +
+  '  return exampleDomainReducer(state, action);\n' +
+  '}\n';
 
-const EXAMPLE_DOMAIN_SELECTORS = 'import {\r\n' +
-  '  EXAMPLE_DOMAIN_FEATURE_KEY,\r\n' +
-  '  State,\r\n' +
-  '} from \'./example-domain.reducer\';\r\n' +
-  'import { createFeatureSelector } from \'@ngrx/store\';\r\n\r\n' +
-  'export const getExampleDomainState = createFeatureSelector<State>(\r\n' +
-  '  EXAMPLE_DOMAIN_FEATURE_KEY\r\n' +
-  ');\r\n'
+const EXAMPLE_DOMAIN_SELECTORS = 'import {\n' +
+  '  EXAMPLE_DOMAIN_FEATURE_KEY,\n' +
+  '  State,\n' +
+  '} from \'./example-domain.reducer\';\n' +
+  'import { createFeatureSelector } from \'@ngrx/store\';\n\n' +
+  'export const getExampleDomainState = createFeatureSelector<State>(\n' +
+  '  EXAMPLE_DOMAIN_FEATURE_KEY\n' +
+  ');\n'
 
 const DOMAIN_TEST_ACTIONS_EMPTY = 'import { createAction, props } from \'@ngrx/store\';';
 
 const DOMAIN_TEST_ACTIONS = 'import { createAction, props } from \'@ngrx/store\';\n\n' +
-  '/*\r\n' +
-  ' * loadTestList\r\n' +
-  ' */\r\n' +
-  'export const loadTestList = createAction(\r\n' +
-  '  \'[ExampleDomain] loadTestList\',\r\n' +
-  '  props<{ id: string }>()\r\n' +
-  ');\r\n' +
-  'export const loadTestListSuccess = createAction(\r\n' +
-  '  \'[ExampleDomain] loadTestListSuccess\',\r\n' +
-  '  props<{ testList: Test[] }>()\r\n' +
-  ');\r\n' +
-  'export const loadTestListFailure = createAction(\r\n' +
-  '  \'[ExampleDomain] loadTestListFailure\',\r\n' +
-  '  props<{ error: Error }>()\r\n' +
+  '/*\n' +
+  ' * loadTestList\n' +
+  ' */\n' +
+  'export const loadTestList = createAction(\n' +
+  '  \'[ExampleDomain] loadTestList\',\n' +
+  '  props<{ id: string }>()\n' +
+  ');\n' +
+  'export const loadTestListSuccess = createAction(\n' +
+  '  \'[ExampleDomain] loadTestListSuccess\',\n' +
+  '  props<{ testList: Test[] }>()\n' +
+  ');\n' +
+  'export const loadTestListFailure = createAction(\n' +
+  '  \'[ExampleDomain] loadTestListFailure\',\n' +
+  '  props<{ error: Error }>()\n' +
   ');\n\n' +
-  '/*\r\n' +
-  ' * loadTestById\r\n' +
-  ' */\r\n' +
-  'export const loadTestById = createAction(\r\n' +
-  '  \'[ExampleDomain] loadTestById\',\r\n' +
-  '  props<{ testId: string }>()\r\n' +
-  ');\r\n' +
-  'export const loadTestByIdSuccess = createAction(\r\n' +
-  '  \'[ExampleDomain] loadTestByIdSuccess\',\r\n' +
-  '  props<{ test: Test }>()\r\n' +
-  ');\r\n' +
-  'export const loadTestByIdFailure = createAction(\r\n' +
-  '  \'[ExampleDomain] loadTestByIdFailure\',\r\n' +
-  '  props<{ error: Error }>()\r\n' +
+  '/*\n' +
+  ' * loadTestById\n' +
+  ' */\n' +
+  'export const loadTestById = createAction(\n' +
+  '  \'[ExampleDomain] loadTestById\',\n' +
+  '  props<{ testId: string }>()\n' +
+  ');\n' +
+  'export const loadTestByIdSuccess = createAction(\n' +
+  '  \'[ExampleDomain] loadTestByIdSuccess\',\n' +
+  '  props<{ test: Test }>()\n' +
+  ');\n' +
+  'export const loadTestByIdFailure = createAction(\n' +
+  '  \'[ExampleDomain] loadTestByIdFailure\',\n' +
+  '  props<{ error: Error }>()\n' +
   ');\n\n' +
-  '/*\r\n' +
-  ' * createTest\r\n' +
-  ' */\r\n' +
-  'export const createTest = createAction(\r\n' +
-  '  \'[ExampleDomain] createTest\',\r\n' +
-  '  props<{ test: Test }>()\r\n' +
-  ');\r\n' +
-  'export const createTestSuccess = createAction(\r\n' +
-  '  \'[ExampleDomain] createTestSuccess\',\r\n' +
-  '  props<{ test: Test }>()\r\n' +
-  ');\r\n' +
-  'export const createTestFailure = createAction(\r\n' +
-  '  \'[ExampleDomain] createTestFailure\',\r\n' +
-  '  props<{ error: Error }>()\r\n' +
+  '/*\n' +
+  ' * createTest\n' +
+  ' */\n' +
+  'export const createTest = createAction(\n' +
+  '  \'[ExampleDomain] createTest\',\n' +
+  '  props<{ test: Test }>()\n' +
+  ');\n' +
+  'export const createTestSuccess = createAction(\n' +
+  '  \'[ExampleDomain] createTestSuccess\',\n' +
+  '  props<{ test: Test }>()\n' +
+  ');\n' +
+  'export const createTestFailure = createAction(\n' +
+  '  \'[ExampleDomain] createTestFailure\',\n' +
+  '  props<{ error: Error }>()\n' +
   ');\n\n' +
-  '/*\r\n' +
-  ' * updateTest\r\n' +
-  ' */\r\n' +
-  'export const updateTest = createAction(\r\n' +
-  '  \'[ExampleDomain] updateTest\',\r\n' +
-  '  props<{ testId: string; test: Test }>()\r\n' +
-  ');\r\n' +
-  'export const updateTestSuccess = createAction(\r\n' +
-  '  \'[ExampleDomain] updateTestSuccess\',\r\n' +
-  '  props<{ test: Test }>()\r\n' +
-  ');\r\n' +
-  'export const updateTestFailure = createAction(\r\n' +
-  '  \'[ExampleDomain] updateTestFailure\',\r\n' +
-  '  props<{ error: Error }>()\r\n' +
+  '/*\n' +
+  ' * updateTest\n' +
+  ' */\n' +
+  'export const updateTest = createAction(\n' +
+  '  \'[ExampleDomain] updateTest\',\n' +
+  '  props<{ testId: string; test: Test }>()\n' +
+  ');\n' +
+  'export const updateTestSuccess = createAction(\n' +
+  '  \'[ExampleDomain] updateTestSuccess\',\n' +
+  '  props<{ test: Test }>()\n' +
+  ');\n' +
+  'export const updateTestFailure = createAction(\n' +
+  '  \'[ExampleDomain] updateTestFailure\',\n' +
+  '  props<{ error: Error }>()\n' +
   ');\n\n' +
-  '/*\r\n' +
-  ' * deleteTest\r\n' +
-  ' */\r\n' +
-  'export const deleteTest = createAction(\r\n' +
-  '  \'[ExampleDomain] deleteTest\',\r\n' +
-  '  props<{ testId: string }>()\r\n' +
-  ');\r\n' +
-  'export const deleteTestSuccess = createAction(\r\n' +
-  '  \'[ExampleDomain] deleteTestSuccess\',\r\n' +
-  '  props<{ testId: string }>()\r\n' +
-  ');\r\n' +
-  'export const deleteTestFailure = createAction(\r\n' +
-  '  \'[ExampleDomain] deleteTestFailure\',\r\n' +
-  '  props<{ error: Error }>()\r\n' +
+  '/*\n' +
+  ' * deleteTest\n' +
+  ' */\n' +
+  'export const deleteTest = createAction(\n' +
+  '  \'[ExampleDomain] deleteTest\',\n' +
+  '  props<{ testId: string }>()\n' +
+  ');\n' +
+  'export const deleteTestSuccess = createAction(\n' +
+  '  \'[ExampleDomain] deleteTestSuccess\',\n' +
+  '  props<{ testId: string }>()\n' +
+  ');\n' +
+  'export const deleteTestFailure = createAction(\n' +
+  '  \'[ExampleDomain] deleteTestFailure\',\n' +
+  '  props<{ error: Error }>()\n' +
   ');\n\n';
 
-const DOMAIN_TEST_ACTIONS_RESETS_EMPTY = 'import { createAction } from \'@ngrx/store\';\r\n\r\n' +
-  '/*\r\n' +
-  ' * resetTestAssets\r\n' +
-  ' */\r\n' +
-  'export const resetTestAssets = createAction(\r\n' +
-  '  \'[ExampleDomain] resetTestAssets\'\r\n' +
-  ');\r\n';
+const DOMAIN_TEST_ACTIONS_RESETS_EMPTY = 'import { createAction } from \'@ngrx/store\';\n\n' +
+  '/*\n' +
+  ' * resetTestAssets\n' +
+  ' */\n' +
+  'export const resetTestAssets = createAction(\n' +
+  '  \'[ExampleDomain] resetTestAssets\'\n' +
+  ');\n';
 
-const DOMAIN_TEST_ACTIONS_RESETS = 'import { createAction } from \'@ngrx/store\';\r\n\r\n' +
-  '/*\r\n' +
-  ' * resetTest\r\n' +
-  ' */\r\n' +
-  'export const resetTest = createAction(\r\n' +
-  '  \'[ExampleDomain] resetTest\',\r\n' +
+const DOMAIN_TEST_ACTIONS_RESETS = 'import { createAction } from \'@ngrx/store\';\n\n' +
+  '/*\n' +
+  ' * resetTest\n' +
+  ' */\n' +
+  'export const resetTest = createAction(\n' +
+  '  \'[ExampleDomain] resetTest\',\n' +
   ');\n\n' +
-  '/*\r\n' +
-  ' * resetTestList\r\n' +
-  ' */\r\n' +
-  'export const resetTestList = createAction(\r\n' +
-  '  \'[ExampleDomain] resetTestList\',\r\n' +
+  '/*\n' +
+  ' * resetTestList\n' +
+  ' */\n' +
+  'export const resetTestList = createAction(\n' +
+  '  \'[ExampleDomain] resetTestList\',\n' +
   ');\n\n' +
-  '/*\r\n' +
-  ' * resetTestAssets\r\n' +
-  ' */\r\n' +
-  'export const resetTestAssets = createAction(\r\n' +
-  '  \'[ExampleDomain] resetTestAssets\'\r\n' +
-  ');\r\n';
+  '/*\n' +
+  ' * resetTestAssets\n' +
+  ' */\n' +
+  'export const resetTestAssets = createAction(\n' +
+  '  \'[ExampleDomain] resetTestAssets\'\n' +
+  ');\n';
 
-const DOMAIN_TEST_EFFECTS_EMPTY = 'import {act, Actions, createEffect, ofType} from \'@ngrx/effects\';\r\n' +
-  'import * as TestActions from \'./test.actions\';\r\n' +
-  'import {catchError, map, switchMap} from \'rxjs/operators\';\r\n' +
-  'import {of} from \'rxjs\';\r\n' +
-  'import {Injectable} from \'@angular/core\';\r\n\r\n' +
-  '@Injectable()\r\n' +
-  'export class TestEffects {\r\n' +
-  '  constructor(private actions$: Actions,private testService: TestService,) {\r\n' +
-  '  }\r\n' +
-  '}\r\n';
+const DOMAIN_TEST_EFFECTS_EMPTY = 'import {act, Actions, createEffect, ofType} from \'@ngrx/effects\';\n' +
+  'import * as TestActions from \'./test.actions\';\n' +
+  'import {catchError, map, switchMap} from \'rxjs/operators\';\n' +
+  'import {of} from \'rxjs\';\n' +
+  'import {Injectable} from \'@angular/core\';\n\n' +
+  '@Injectable()\n' +
+  'export class TestEffects {\n' +
+  '  constructor(private actions$: Actions,private testService: TestService,) {\n' +
+  '  }\n' +
+  '}\n';
 
 const DOMAIN_TEST_EFFECTS = '' +
-  'import {act, Actions, createEffect, ofType} from \'@ngrx/effects\';\r\n' +
-  'import * as TestActions from \'./test.actions\';\r\n' +
-  'import {catchError, map, switchMap} from \'rxjs/operators\';\r\n' +
-  'import {of} from \'rxjs\';\r\n' +
-  'import {Injectable} from \'@angular/core\';\r\n\r\n' +
-  '@Injectable()\r\n' +
-  'export class TestEffects {\r\n' +
-  '  loadTestList$ = createEffect(() => {\r\n' +
-  '  return this.actions$.pipe(\r\n' +
-  '    ofType(TestActions.loadTestList),\r\n' +
-  '    switchMap((act) =>\r\n' +
-  '      this.testService.loadTestList().pipe(\r\n' +
-  '        map(() =>\r\n' +
-  '          TestActions.loadTestListSuccess({\r\n' +
-  '          }),\r\n' +
-  '        ),\r\n' +
-  '        catchError((err) =>\r\n' +
-  '          of(\r\n' +
-  '            TestActions.loadTestListFailure({\r\n' +
-  '              error: err,\r\n' +
-  '            })\r\n' +
-  '          )\r\n' +
-  '        )\r\n' +
-  '      )\r\n' +
-  '    )\r\n' +
-  '  );\r\n' +
+  'import {act, Actions, createEffect, ofType} from \'@ngrx/effects\';\n' +
+  'import * as TestActions from \'./test.actions\';\n' +
+  'import {catchError, map, switchMap} from \'rxjs/operators\';\n' +
+  'import {of} from \'rxjs\';\n' +
+  'import {Injectable} from \'@angular/core\';\n\n' +
+  '@Injectable()\n' +
+  'export class TestEffects {\n' +
+  '  loadTestList$ = createEffect(() => {\n' +
+  '  return this.actions$.pipe(\n' +
+  '    ofType(TestActions.loadTestList),\n' +
+  '    switchMap((act) =>\n' +
+  '      this.testService.loadTestList().pipe(\n' +
+  '        map(() =>\n' +
+  '          TestActions.loadTestListSuccess({\n' +
+  '          }),\n' +
+  '        ),\n' +
+  '        catchError((err) =>\n' +
+  '          of(\n' +
+  '            TestActions.loadTestListFailure({\n' +
+  '              error: err,\n' +
+  '            })\n' +
+  '          )\n' +
+  '        )\n' +
+  '      )\n' +
+  '    )\n' +
+  '  );\n' +
   '});\n\n' +
-  'loadTestById$ = createEffect(() => {\r\n' +
-  '  return this.actions$.pipe(\r\n' +
-  '    ofType(TestActions.loadTestById),\r\n' +
-  '    switchMap((act) =>\r\n' +
-  '      this.testService.loadTestById().pipe(\r\n' +
-  '        map(() =>\r\n' +
-  '          TestActions.loadTestByIdSuccess({\r\n' +
-  '          }),\r\n' +
-  '        ),\r\n' +
-  '        catchError((err) =>\r\n' +
-  '          of(\r\n' +
-  '            TestActions.loadTestByIdFailure({\r\n' +
-  '              error: err,\r\n' +
-  '            })\r\n' +
-  '          )\r\n' +
-  '        )\r\n' +
-  '      )\r\n' +
-  '    )\r\n' +
-  '  );\r\n' +
+  'loadTestById$ = createEffect(() => {\n' +
+  '  return this.actions$.pipe(\n' +
+  '    ofType(TestActions.loadTestById),\n' +
+  '    switchMap((act) =>\n' +
+  '      this.testService.loadTestById().pipe(\n' +
+  '        map(() =>\n' +
+  '          TestActions.loadTestByIdSuccess({\n' +
+  '          }),\n' +
+  '        ),\n' +
+  '        catchError((err) =>\n' +
+  '          of(\n' +
+  '            TestActions.loadTestByIdFailure({\n' +
+  '              error: err,\n' +
+  '            })\n' +
+  '          )\n' +
+  '        )\n' +
+  '      )\n' +
+  '    )\n' +
+  '  );\n' +
   '});\n\n' +
-  'createTest$ = createEffect(() => {\r\n' +
-  '  return this.actions$.pipe(\r\n' +
-  '    ofType(TestActions.createTest),\r\n' +
-  '    switchMap((act) =>\r\n' +
-  '      this.testService.createTest().pipe(\r\n' +
-  '        map(() =>\r\n' +
-  '          TestActions.createTestSuccess({\r\n' +
-  '          }),\r\n' +
-  '        ),\r\n' +
-  '        catchError((err) =>\r\n' +
-  '          of(\r\n' +
-  '            TestActions.createTestFailure({\r\n' +
-  '              error: err,\r\n' +
-  '            })\r\n' +
-  '          )\r\n' +
-  '        )\r\n' +
-  '      )\r\n' +
-  '    )\r\n' +
-  '  );\r\n' +
+  'createTest$ = createEffect(() => {\n' +
+  '  return this.actions$.pipe(\n' +
+  '    ofType(TestActions.createTest),\n' +
+  '    switchMap((act) =>\n' +
+  '      this.testService.createTest().pipe(\n' +
+  '        map(() =>\n' +
+  '          TestActions.createTestSuccess({\n' +
+  '          }),\n' +
+  '        ),\n' +
+  '        catchError((err) =>\n' +
+  '          of(\n' +
+  '            TestActions.createTestFailure({\n' +
+  '              error: err,\n' +
+  '            })\n' +
+  '          )\n' +
+  '        )\n' +
+  '      )\n' +
+  '    )\n' +
+  '  );\n' +
   '});\n\n' +
-  'updateTest$ = createEffect(() => {\r\n' +
-  '  return this.actions$.pipe(\r\n' +
-  '    ofType(TestActions.updateTest),\r\n' +
-  '    switchMap((act) =>\r\n' +
-  '      this.testService.updateTest().pipe(\r\n' +
-  '        map(() =>\r\n' +
-  '          TestActions.updateTestSuccess({\r\n' +
-  '          }),\r\n' +
-  '        ),\r\n' +
-  '        catchError((err) =>\r\n' +
-  '          of(\r\n' +
-  '            TestActions.updateTestFailure({\r\n' +
-  '              error: err,\r\n' +
-  '            })\r\n' +
-  '          )\r\n' +
-  '        )\r\n' +
-  '      )\r\n' +
-  '    )\r\n' +
-  '  );\r\n' +
+  'updateTest$ = createEffect(() => {\n' +
+  '  return this.actions$.pipe(\n' +
+  '    ofType(TestActions.updateTest),\n' +
+  '    switchMap((act) =>\n' +
+  '      this.testService.updateTest().pipe(\n' +
+  '        map(() =>\n' +
+  '          TestActions.updateTestSuccess({\n' +
+  '          }),\n' +
+  '        ),\n' +
+  '        catchError((err) =>\n' +
+  '          of(\n' +
+  '            TestActions.updateTestFailure({\n' +
+  '              error: err,\n' +
+  '            })\n' +
+  '          )\n' +
+  '        )\n' +
+  '      )\n' +
+  '    )\n' +
+  '  );\n' +
   '});\n\n' +
-  'deleteTest$ = createEffect(() => {\r\n' +
-  '  return this.actions$.pipe(\r\n' +
-  '    ofType(TestActions.deleteTest),\r\n' +
-  '    switchMap((act) =>\r\n' +
-  '      this.testService.deleteTest().pipe(\r\n' +
-  '        map(() =>\r\n' +
-  '          TestActions.deleteTestSuccess({\r\n' +
-  '          }),\r\n' +
-  '        ),\r\n' +
-  '        catchError((err) =>\r\n' +
-  '          of(\r\n' +
-  '            TestActions.deleteTestFailure({\r\n' +
-  '              error: err,\r\n' +
-  '            })\r\n' +
-  '          )\r\n' +
-  '        )\r\n' +
-  '      )\r\n' +
-  '    )\r\n' +
-  '  );\r\n' +
+  'deleteTest$ = createEffect(() => {\n' +
+  '  return this.actions$.pipe(\n' +
+  '    ofType(TestActions.deleteTest),\n' +
+  '    switchMap((act) =>\n' +
+  '      this.testService.deleteTest().pipe(\n' +
+  '        map(() =>\n' +
+  '          TestActions.deleteTestSuccess({\n' +
+  '          }),\n' +
+  '        ),\n' +
+  '        catchError((err) =>\n' +
+  '          of(\n' +
+  '            TestActions.deleteTestFailure({\n' +
+  '              error: err,\n' +
+  '            })\n' +
+  '          )\n' +
+  '        )\n' +
+  '      )\n' +
+  '    )\n' +
+  '  );\n' +
   '});\n\n' +
-  'constructor(private actions$: Actions,private testService: TestService,) {\r\n' +
-  '  }\r\n' +
-  '}\r\n';
+  'constructor(private actions$: Actions,private testService: TestService,) {\n' +
+  '  }\n' +
+  '}\n';
 
-const DOMAIN_TEST_FACADE_EMPTY = 'import { Injectable } from \'@angular/core\';\r\n' +
-  'import { select, Store } from \'@ngrx/store\';\r\n' +
-  'import * as TestSelectors from \'./test.selectors\';\r\n' +
-  'import * as fromExampleDomain from \'../example-domain.reducer\';\r\n' +
-  'import * as TestActions from \'./test.actions\';\r\n' +
-  'import {TestResetsFacade} from \'./test.facade.resets\';\r\n\r\n' +
-  '@Injectable()\r\n' +
-  'export class TestFacade extends TestResetsFacade {\r\n' +
-  '  constructor(\r\n' +
-  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\r\n' +
-  '  ) {\r\n' +
-  '    super(store);\r\n' +
-  '  }\r\n' +
-  '}\r\n';
+const DOMAIN_TEST_FACADE_EMPTY = 'import { Injectable } from \'@angular/core\';\n' +
+  'import { select, Store } from \'@ngrx/store\';\n' +
+  'import * as TestSelectors from \'./test.selectors\';\n' +
+  'import * as fromExampleDomain from \'../example-domain.reducer\';\n' +
+  'import * as TestActions from \'./test.actions\';\n' +
+  'import {TestResetsFacade} from \'./test.facade.resets\';\n\n' +
+  '@Injectable()\n' +
+  'export class TestFacade extends TestResetsFacade {\n' +
+  '  constructor(\n' +
+  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\n' +
+  '  ) {\n' +
+  '    super(store);\n' +
+  '  }\n' +
+  '}\n';
 
-const DOMAIN_TEST_FACADE = 'import { Injectable } from \'@angular/core\';\r\n' +
-  'import { select, Store } from \'@ngrx/store\';\r\n' +
-  'import * as TestSelectors from \'./test.selectors\';\r\n' +
-  'import * as fromExampleDomain from \'../example-domain.reducer\';\r\n' +
-  'import * as TestActions from \'./test.actions\';\r\n' +
-  'import {TestResetsFacade} from \'./test.facade.resets\';\r\n\r\n' +
-  '@Injectable()\r\n' +
-  'export class TestFacade extends TestResetsFacade {\r\n' +
-  '  test$ = this.store.pipe(select(TestSelectors.getTest));testList$ = this.store.pipe(select(TestSelectors.getTestList));loadTestListPending$ = this.store.pipe(select(TestSelectors.getLoadTestListPending));loadTestListSuccess$ = this.store.pipe(select(TestSelectors.getLoadTestListSuccess));loadTestListFailure$ = this.store.pipe(select(TestSelectors.getLoadTestListFailure));loadTestByIdPending$ = this.store.pipe(select(TestSelectors.getLoadTestByIdPending));loadTestByIdSuccess$ = this.store.pipe(select(TestSelectors.getLoadTestByIdSuccess));loadTestByIdFailure$ = this.store.pipe(select(TestSelectors.getLoadTestByIdFailure));createTestPending$ = this.store.pipe(select(TestSelectors.getCreateTestPending));createTestSuccess$ = this.store.pipe(select(TestSelectors.getCreateTestSuccess));createTestFailure$ = this.store.pipe(select(TestSelectors.getCreateTestFailure));updateTestPending$ = this.store.pipe(select(TestSelectors.getUpdateTestPending));updateTestSuccess$ = this.store.pipe(select(TestSelectors.getUpdateTestSuccess));updateTestFailure$ = this.store.pipe(select(TestSelectors.getUpdateTestFailure));deleteTestPending$ = this.store.pipe(select(TestSelectors.getDeleteTestPending));deleteTestSuccess$ = this.store.pipe(select(TestSelectors.getDeleteTestSuccess));deleteTestFailure$ = this.store.pipe(select(TestSelectors.getDeleteTestFailure));loadTestList(id: string) {\r\n' +
-  '  this.dispatch(TestActions.loadTestList({ id }));\r\n' +
+const DOMAIN_TEST_FACADE = 'import { Injectable } from \'@angular/core\';\n' +
+  'import { select, Store } from \'@ngrx/store\';\n' +
+  'import * as TestSelectors from \'./test.selectors\';\n' +
+  'import * as fromExampleDomain from \'../example-domain.reducer\';\n' +
+  'import * as TestActions from \'./test.actions\';\n' +
+  'import {TestResetsFacade} from \'./test.facade.resets\';\n\n' +
+  '@Injectable()\n' +
+  'export class TestFacade extends TestResetsFacade {\n' +
+  '  test$ = this.store.pipe(select(TestSelectors.getTest));testList$ = this.store.pipe(select(TestSelectors.getTestList));loadTestListPending$ = this.store.pipe(select(TestSelectors.getLoadTestListPending));loadTestListSuccess$ = this.store.pipe(select(TestSelectors.getLoadTestListSuccess));loadTestListFailure$ = this.store.pipe(select(TestSelectors.getLoadTestListFailure));loadTestByIdPending$ = this.store.pipe(select(TestSelectors.getLoadTestByIdPending));loadTestByIdSuccess$ = this.store.pipe(select(TestSelectors.getLoadTestByIdSuccess));loadTestByIdFailure$ = this.store.pipe(select(TestSelectors.getLoadTestByIdFailure));createTestPending$ = this.store.pipe(select(TestSelectors.getCreateTestPending));createTestSuccess$ = this.store.pipe(select(TestSelectors.getCreateTestSuccess));createTestFailure$ = this.store.pipe(select(TestSelectors.getCreateTestFailure));updateTestPending$ = this.store.pipe(select(TestSelectors.getUpdateTestPending));updateTestSuccess$ = this.store.pipe(select(TestSelectors.getUpdateTestSuccess));updateTestFailure$ = this.store.pipe(select(TestSelectors.getUpdateTestFailure));deleteTestPending$ = this.store.pipe(select(TestSelectors.getDeleteTestPending));deleteTestSuccess$ = this.store.pipe(select(TestSelectors.getDeleteTestSuccess));deleteTestFailure$ = this.store.pipe(select(TestSelectors.getDeleteTestFailure));loadTestList(id: string) {\n' +
+  '  this.dispatch(TestActions.loadTestList({ id }));\n' +
   '}\n\n' +
-  'loadTestById(testId: string) {\r\n' +
-  '  this.dispatch(TestActions.loadTestById({ testId }));\r\n' +
+  'loadTestById(testId: string) {\n' +
+  '  this.dispatch(TestActions.loadTestById({ testId }));\n' +
   '}\n\n' +
-  'createTest(test: Test) {\r\n' +
-  '  this.dispatch(TestActions.createTest({ test }));\r\n' +
+  'createTest(test: Test) {\n' +
+  '  this.dispatch(TestActions.createTest({ test }));\n' +
   '}\n\n' +
-  'updateTest(testId: string, test: Test) {\r\n' +
-  '  this.dispatch(TestActions.updateTest({ testId, test }));\r\n' +
+  'updateTest(testId: string, test: Test) {\n' +
+  '  this.dispatch(TestActions.updateTest({ testId, test }));\n' +
   '}\n\n' +
-  'deleteTest(testId: string) {\r\n' +
-  '  this.dispatch(TestActions.deleteTest({ testId }));\r\n' +
+  'deleteTest(testId: string) {\n' +
+  '  this.dispatch(TestActions.deleteTest({ testId }));\n' +
   '}\n\n' +
-  'constructor(\r\n' +
-  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\r\n' +
-  '  ) {\r\n' +
-  '    super(store);\r\n' +
-  '  }\r\n' +
-  '}\r\n';
+  'constructor(\n' +
+  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\n' +
+  '  ) {\n' +
+  '    super(store);\n' +
+  '  }\n' +
+  '}\n';
 
-const DOMAIN_TEST_FACADE_RESETS_EMPTY = 'import { Injectable } from \'@angular/core\';\r\n' +
-  'import { Action, Store } from \'@ngrx/store\';\r\n' +
-  'import * as fromExampleDomain from \'../example-domain.reducer\';\r\n' +
-  'import * as TestResetsActions from \'./test.actions.resets\';\r\n\r\n' +
-  '@Injectable()\r\n' +
-  'export class TestResetsFacade {\r\n' +
-  '  resetTestAssets() {\r\n' +
-  '    this.dispatch(TestResetsActions.resetTestAssets());\r\n' +
-  '  }\r\n\r\n' +
-  '  constructor(\r\n' +
-  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\r\n' +
-  '  ) {}\r\n\r\n' +
-  '  protected dispatch(action: Action) {\r\n' +
-  '    this.store.dispatch(action);\r\n' +
-  '  }\r\n' +
-  '}\r\n';
+const DOMAIN_TEST_FACADE_RESETS_EMPTY = 'import { Injectable } from \'@angular/core\';\n' +
+  'import { Action, Store } from \'@ngrx/store\';\n' +
+  'import * as fromExampleDomain from \'../example-domain.reducer\';\n' +
+  'import * as TestResetsActions from \'./test.actions.resets\';\n\n' +
+  '@Injectable()\n' +
+  'export class TestResetsFacade {\n' +
+  '  resetTestAssets() {\n' +
+  '    this.dispatch(TestResetsActions.resetTestAssets());\n' +
+  '  }\n\n' +
+  '  constructor(\n' +
+  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\n' +
+  '  ) {}\n\n' +
+  '  protected dispatch(action: Action) {\n' +
+  '    this.store.dispatch(action);\n' +
+  '  }\n' +
+  '}\n';
 
-const DOMAIN_TEST_FACADE_RESETS = 'import { Injectable } from \'@angular/core\';\r\n' +
-  'import { Action, Store } from \'@ngrx/store\';\r\n' +
-  'import * as fromExampleDomain from \'../example-domain.reducer\';\r\n' +
-  'import * as TestResetsActions from \'./test.actions.resets\';\r\n\r\n' +
-  '@Injectable()\r\n' +
-  'export class TestResetsFacade {\r\n' +
-  '  resetTest() {\r\n' +
-  '  this.dispatch(TestResetsActions.resetTest());\r\n' +
+const DOMAIN_TEST_FACADE_RESETS = 'import { Injectable } from \'@angular/core\';\n' +
+  'import { Action, Store } from \'@ngrx/store\';\n' +
+  'import * as fromExampleDomain from \'../example-domain.reducer\';\n' +
+  'import * as TestResetsActions from \'./test.actions.resets\';\n\n' +
+  '@Injectable()\n' +
+  'export class TestResetsFacade {\n' +
+  '  resetTest() {\n' +
+  '  this.dispatch(TestResetsActions.resetTest());\n' +
   '}\n\n' +
-  'resetTestList() {\r\n' +
-  '  this.dispatch(TestResetsActions.resetTestList());\r\n' +
+  'resetTestList() {\n' +
+  '  this.dispatch(TestResetsActions.resetTestList());\n' +
   '}\n\n' +
-  'resetTestAssets() {\r\n' +
-  '    this.dispatch(TestResetsActions.resetTestAssets());\r\n' +
-  '  }\r\n\r\n' +
-  '  constructor(\r\n' +
-  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\r\n' +
-  '  ) {}\r\n\r\n' +
-  '  protected dispatch(action: Action) {\r\n' +
-  '    this.store.dispatch(action);\r\n' +
-  '  }\r\n' +
-  '}\r\n';
+  'resetTestAssets() {\n' +
+  '    this.dispatch(TestResetsActions.resetTestAssets());\n' +
+  '  }\n\n' +
+  '  constructor(\n' +
+  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\n' +
+  '  ) {}\n\n' +
+  '  protected dispatch(action: Action) {\n' +
+  '    this.store.dispatch(action);\n' +
+  '  }\n' +
+  '}\n';
 
-const DOMAIN_TEST_REDUCER_EMPTY = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\r\n' +
-  'import * as TestActions from \'./test.actions\';\r\n' +
-  'import {getTestResetsOns} from \'./test.reducer.resets\';\r\n' +
-  'import {replaceArrayItem} from \'@tpx1/util\';\r\n\r\n' +
-  'export interface TestState {}\r\n\r\n' +
-  'export const testInitialState: TestState = {\r\n' +
-  '   // Use carefully! testInitialState should be empty.\r\n' +
-  '   // Arrays should be initiated with undefined or null to differ between unloaded array and loaded empty array.\r\n' +
-  '};\r\n\r\n' +
-  'export function getTestOns<T extends TestState>(): ReducerTypes<T, ActionCreator[]>[] {\r\n' +
-  '  return [...getTestResetsOns<T>(),];\r\n' +
-  '}\r\n';
+const DOMAIN_TEST_REDUCER_EMPTY = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\n' +
+  'import * as TestActions from \'./test.actions\';\n' +
+  'import {getTestResetsOns} from \'./test.reducer.resets\';\n' +
+  'import {replaceArrayItem} from \'@tpx1/util\';\n\n' +
+  'export interface TestState {}\n\n' +
+  'export const testInitialState: TestState = {\n' +
+  '   // Use carefully! testInitialState should be empty.\n' +
+  '   // Arrays should be initiated with undefined or null to differ between unloaded array and loaded empty array.\n' +
+  '};\n\n' +
+  'export function getTestOns<T extends TestState>(): ReducerTypes<T, ActionCreator[]>[] {\n' +
+  '  return [...getTestResetsOns<T>(),];\n' +
+  '}\n';
 
-const DOMAIN_TEST_REDUCER = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\r\n' +
-  'import * as TestActions from \'./test.actions\';\r\n' +
-  'import {getTestResetsOns} from \'./test.reducer.resets\';\r\n' +
-  'import {replaceArrayItem} from \'@tpx1/util\';\r\n\r\n' +
-  'export interface TestState {test?: Test;testList?: Test[];loadTestListPending?: boolean;\r\n' +
-  'loadTestListSuccess?: boolean;\r\n' +
-  'loadTestListFailure?: Error;loadTestByIdPending?: boolean;\r\n' +
-  'loadTestByIdSuccess?: boolean;\r\n' +
-  'loadTestByIdFailure?: Error;createTestPending?: boolean;\r\n' +
-  'createTestSuccess?: boolean;\r\n' +
-  'createTestFailure?: Error;updateTestPending?: boolean;\r\n' +
-  'updateTestSuccess?: boolean;\r\n' +
-  'updateTestFailure?: Error;deleteTestPending?: boolean;\r\n' +
-  'deleteTestSuccess?: boolean;\r\n' +
-  'deleteTestFailure?: Error;}\r\n\r\n' +
-  'export const testInitialState: TestState = {\r\n' +
-  '   // Use carefully! testInitialState should be empty.\r\n' +
-  '   // Arrays should be initiated with undefined or null to differ between unloaded array and loaded empty array.\r\n' +
-  '};\r\n\r\n' +
-  'export function getTestOns<T extends TestState>(): ReducerTypes<T, ActionCreator[]>[] {\r\n' +
+const DOMAIN_TEST_REDUCER = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\n' +
+  'import * as TestActions from \'./test.actions\';\n' +
+  'import {getTestResetsOns} from \'./test.reducer.resets\';\n' +
+  'import {replaceArrayItem} from \'@tpx1/util\';\n\n' +
+  'export interface TestState {test?: Test;testList?: Test[];loadTestListPending?: boolean;\n' +
+  'loadTestListSuccess?: boolean;\n' +
+  'loadTestListFailure?: Error;loadTestByIdPending?: boolean;\n' +
+  'loadTestByIdSuccess?: boolean;\n' +
+  'loadTestByIdFailure?: Error;createTestPending?: boolean;\n' +
+  'createTestSuccess?: boolean;\n' +
+  'createTestFailure?: Error;updateTestPending?: boolean;\n' +
+  'updateTestSuccess?: boolean;\n' +
+  'updateTestFailure?: Error;deleteTestPending?: boolean;\n' +
+  'deleteTestSuccess?: boolean;\n' +
+  'deleteTestFailure?: Error;}\n\n' +
+  'export const testInitialState: TestState = {\n' +
+  '   // Use carefully! testInitialState should be empty.\n' +
+  '   // Arrays should be initiated with undefined or null to differ between unloaded array and loaded empty array.\n' +
+  '};\n\n' +
+  'export function getTestOns<T extends TestState>(): ReducerTypes<T, ActionCreator[]>[] {\n' +
   '  return [...getTestResetsOns<T>(),\n\n' +
-  '/*\r\n' +
-  ' * loadTestList\r\n' +
-  ' */\r\n' +
-  'on(TestActions.loadTestList, (state) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  testList: null,\r\n' +
-  '  loadTestListPending: true,\r\n' +
-  '  loadTestListSuccess: false,\r\n' +
-  '  loadTestListFailure: null,\r\n' +
-  '})),\r\n' +
-  'on(TestActions.loadTestListSuccess, (state, {testList}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  testList: testList,\r\n' +
-  '  loadTestListPending: false,\r\n' +
-  '  loadTestListSuccess: true,\r\n' +
-  '})),\r\n' +
-  'on(TestActions.loadTestListFailure, (state, {error}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  loadTestListPending: false,\r\n' +
-  '  loadTestListFailure: error,\r\n' +
+  '/*\n' +
+  ' * loadTestList\n' +
+  ' */\n' +
+  'on(TestActions.loadTestList, (state) => ({\n' +
+  '  ...state,\n' +
+  '  testList: null,\n' +
+  '  loadTestListPending: true,\n' +
+  '  loadTestListSuccess: false,\n' +
+  '  loadTestListFailure: null,\n' +
+  '})),\n' +
+  'on(TestActions.loadTestListSuccess, (state, {testList}) => ({\n' +
+  '  ...state,\n' +
+  '  testList: testList,\n' +
+  '  loadTestListPending: false,\n' +
+  '  loadTestListSuccess: true,\n' +
+  '})),\n' +
+  'on(TestActions.loadTestListFailure, (state, {error}) => ({\n' +
+  '  ...state,\n' +
+  '  loadTestListPending: false,\n' +
+  '  loadTestListFailure: error,\n' +
   '})),\n\n' +
-  '/*\r\n' +
-  ' * loadTestById\r\n' +
-  ' */\r\n' +
-  'on(TestActions.loadTestById, (state) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  test: null,\r\n' +
-  '  loadTestByIdPending: true,\r\n' +
-  '  loadTestByIdSuccess: false,\r\n' +
-  '  loadTestByIdFailure: null,\r\n' +
-  '})),\r\n' +
-  'on(TestActions.loadTestByIdSuccess, (state, {test}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  test: test,\r\n' +
-  '  loadTestByIdPending: false,\r\n' +
-  '  loadTestByIdSuccess: true,\r\n' +
-  '})),\r\n' +
-  'on(TestActions.loadTestByIdFailure, (state, {error}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  loadTestByIdPending: false,\r\n' +
-  '  loadTestByIdFailure: error,\r\n' +
+  '/*\n' +
+  ' * loadTestById\n' +
+  ' */\n' +
+  'on(TestActions.loadTestById, (state) => ({\n' +
+  '  ...state,\n' +
+  '  test: null,\n' +
+  '  loadTestByIdPending: true,\n' +
+  '  loadTestByIdSuccess: false,\n' +
+  '  loadTestByIdFailure: null,\n' +
+  '})),\n' +
+  'on(TestActions.loadTestByIdSuccess, (state, {test}) => ({\n' +
+  '  ...state,\n' +
+  '  test: test,\n' +
+  '  loadTestByIdPending: false,\n' +
+  '  loadTestByIdSuccess: true,\n' +
+  '})),\n' +
+  'on(TestActions.loadTestByIdFailure, (state, {error}) => ({\n' +
+  '  ...state,\n' +
+  '  loadTestByIdPending: false,\n' +
+  '  loadTestByIdFailure: error,\n' +
   '})),\n\n' +
-  '/*\r\n' +
-  ' * createTest\r\n' +
-  ' */\r\n' +
-  'on(TestActions.createTest, (state) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  createTestPending: true,\r\n' +
-  '  createTestSuccess: false,\r\n' +
-  '  createTestFailure: null,\r\n' +
-  '})),\r\n' +
-  'on(TestActions.createTestSuccess, (state, {test}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  test: test,\r\n' +
-  '  testList: [...(state.testList || []), test],\r\n' +
-  '  createTestPending: false,\r\n' +
-  '  createTestSuccess: true,\r\n' +
-  '})),\r\n' +
-  'on(TestActions.createTestFailure, (state, {error}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  createTestPending: false,\r\n' +
-  '  createTestFailure: error,\r\n' +
+  '/*\n' +
+  ' * createTest\n' +
+  ' */\n' +
+  'on(TestActions.createTest, (state) => ({\n' +
+  '  ...state,\n' +
+  '  createTestPending: true,\n' +
+  '  createTestSuccess: false,\n' +
+  '  createTestFailure: null,\n' +
+  '})),\n' +
+  'on(TestActions.createTestSuccess, (state, {test}) => ({\n' +
+  '  ...state,\n' +
+  '  test: test,\n' +
+  '  testList: [...(state.testList || []), test],\n' +
+  '  createTestPending: false,\n' +
+  '  createTestSuccess: true,\n' +
+  '})),\n' +
+  'on(TestActions.createTestFailure, (state, {error}) => ({\n' +
+  '  ...state,\n' +
+  '  createTestPending: false,\n' +
+  '  createTestFailure: error,\n' +
   '})),\n\n' +
-  '/*\r\n' +
-  ' * updateTest\r\n' +
-  ' */\r\n' +
-  'on(TestActions.updateTest, (state) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  updateTestPending: true,\r\n' +
-  '  updateTestSuccess: false,\r\n' +
-  '  updateTestFailure: null,\r\n' +
-  '})),\r\n' +
-  'on(TestActions.updateTestSuccess, (state, {test}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  test: test,\r\n' +
-  '  testList: replaceArrayItem(state.testList, test, \'id\'),\r\n' +
-  '  updateTestPending: false,\r\n' +
-  '  updateTestSuccess: true,\r\n' +
-  '})),\r\n' +
-  'on(TestActions.updateTestFailure, (state, {error}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  updateTestPending: false,\r\n' +
-  '  updateTestFailure: error,\r\n' +
+  '/*\n' +
+  ' * updateTest\n' +
+  ' */\n' +
+  'on(TestActions.updateTest, (state) => ({\n' +
+  '  ...state,\n' +
+  '  updateTestPending: true,\n' +
+  '  updateTestSuccess: false,\n' +
+  '  updateTestFailure: null,\n' +
+  '})),\n' +
+  'on(TestActions.updateTestSuccess, (state, {test}) => ({\n' +
+  '  ...state,\n' +
+  '  test: test,\n' +
+  '  testList: replaceArrayItem(state.testList, test, \'id\'),\n' +
+  '  updateTestPending: false,\n' +
+  '  updateTestSuccess: true,\n' +
+  '})),\n' +
+  'on(TestActions.updateTestFailure, (state, {error}) => ({\n' +
+  '  ...state,\n' +
+  '  updateTestPending: false,\n' +
+  '  updateTestFailure: error,\n' +
   '})),\n\n' +
-  '/*\r\n' +
-  ' * deleteTest\r\n' +
-  ' */\r\n' +
-  'on(TestActions.deleteTest, (state) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  deleteTestPending: true,\r\n' +
-  '  deleteTestSuccess: false,\r\n' +
-  '  deleteTestFailure: null,\r\n' +
-  '})),\r\n' +
-  'on(TestActions.deleteTestSuccess, (state, {testId}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  testList: [...state.testList?.filter(v => v.id !== testId) || []],\r\n' +
-  '  deleteTestPending: false,\r\n' +
-  '  deleteTestSuccess: true,\r\n' +
-  '})),\r\n' +
-  'on(TestActions.deleteTestFailure, (state, {error}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  deleteTestPending: false,\r\n' +
-  '  deleteTestFailure: error,\r\n' +
+  '/*\n' +
+  ' * deleteTest\n' +
+  ' */\n' +
+  'on(TestActions.deleteTest, (state) => ({\n' +
+  '  ...state,\n' +
+  '  deleteTestPending: true,\n' +
+  '  deleteTestSuccess: false,\n' +
+  '  deleteTestFailure: null,\n' +
+  '})),\n' +
+  'on(TestActions.deleteTestSuccess, (state, {testId}) => ({\n' +
+  '  ...state,\n' +
+  '  testList: [...state.testList?.filter(v => v.id !== testId) || []],\n' +
+  '  deleteTestPending: false,\n' +
+  '  deleteTestSuccess: true,\n' +
+  '})),\n' +
+  'on(TestActions.deleteTestFailure, (state, {error}) => ({\n' +
+  '  ...state,\n' +
+  '  deleteTestPending: false,\n' +
+  '  deleteTestFailure: error,\n' +
   '})),\n\n' +
-  '];\r\n' +
-  '}\r\n';
+  '];\n' +
+  '}\n';
 
-const DOMAIN_TEST_REDUCER_RESETS_EMPTY = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\r\n' +
-  'import * as TestResetsActions from \'./test.actions.resets\';\r\n' +
-  'import {TestState} from \'./test.reducer\';\r\n\r\n' +
-  'export function getTestResetsOns<T extends TestState>(): ReducerTypes<T, ActionCreator[]>[] {\r\n' +
-  '  return [\r\n' +
-  '    /*\r\n' +
-  '     * resetTestAssets\r\n' +
-  '     */\r\n' +
-  '    on(TestResetsActions.resetTestAssets, (state) => ({...state,})),\r\n' +
-  '  ];\r\n' +
-  '}\r\n';
+const DOMAIN_TEST_REDUCER_RESETS_EMPTY = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\n' +
+  'import * as TestResetsActions from \'./test.actions.resets\';\n' +
+  'import {TestState} from \'./test.reducer\';\n\n' +
+  'export function getTestResetsOns<T extends TestState>(): ReducerTypes<T, ActionCreator[]>[] {\n' +
+  '  return [\n' +
+  '    /*\n' +
+  '     * resetTestAssets\n' +
+  '     */\n' +
+  '    on(TestResetsActions.resetTestAssets, (state) => ({...state,})),\n' +
+  '  ];\n' +
+  '}\n';
 
-const DOMAIN_TEST_REDUCER_RESETS = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\r\n' +
-  'import * as TestResetsActions from \'./test.actions.resets\';\r\n' +
-  'import {TestState} from \'./test.reducer\';\r\n\r\n' +
-  'export function getTestResetsOns<T extends TestState>(): ReducerTypes<T, ActionCreator[]>[] {\r\n' +
-  '  return [\r\n' +
-  '    /*\r\n' +
-  ' * resetTest\r\n' +
-  ' */\r\n' +
-  'on(TestResetsActions.resetTest, (state) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  test: null,\r\n' +
+const DOMAIN_TEST_REDUCER_RESETS = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\n' +
+  'import * as TestResetsActions from \'./test.actions.resets\';\n' +
+  'import {TestState} from \'./test.reducer\';\n\n' +
+  'export function getTestResetsOns<T extends TestState>(): ReducerTypes<T, ActionCreator[]>[] {\n' +
+  '  return [\n' +
+  '    /*\n' +
+  ' * resetTest\n' +
+  ' */\n' +
+  'on(TestResetsActions.resetTest, (state) => ({\n' +
+  '  ...state,\n' +
+  '  test: null,\n' +
   '})),\n\n' +
-  '/*\r\n' +
-  ' * resetTestList\r\n' +
-  ' */\r\n' +
-  'on(TestResetsActions.resetTestList, (state) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  testList: null,\r\n' +
+  '/*\n' +
+  ' * resetTestList\n' +
+  ' */\n' +
+  'on(TestResetsActions.resetTestList, (state) => ({\n' +
+  '  ...state,\n' +
+  '  testList: null,\n' +
   '})),\n\n' +
-  '/*\r\n' +
-  '     * resetTestAssets\r\n' +
-  '     */\r\n' +
-  '    on(TestResetsActions.resetTestAssets, (state) => ({...state,loadTestListPending: false,\r\n' +
-  'loadTestListSuccess: false,\r\n' +
-  'loadTestListFailure: null,loadTestByIdPending: false,\r\n' +
-  'loadTestByIdSuccess: false,\r\n' +
-  'loadTestByIdFailure: null,createTestPending: false,\r\n' +
-  'createTestSuccess: false,\r\n' +
-  'createTestFailure: null,updateTestPending: false,\r\n' +
-  'updateTestSuccess: false,\r\n' +
-  'updateTestFailure: null,deleteTestPending: false,\r\n' +
-  'deleteTestSuccess: false,\r\n' +
-  'deleteTestFailure: null,})),\r\n' +
-  '  ];\r\n' +
-  '}\r\n';
+  '/*\n' +
+  '     * resetTestAssets\n' +
+  '     */\n' +
+  '    on(TestResetsActions.resetTestAssets, (state) => ({...state,loadTestListPending: false,\n' +
+  'loadTestListSuccess: false,\n' +
+  'loadTestListFailure: null,loadTestByIdPending: false,\n' +
+  'loadTestByIdSuccess: false,\n' +
+  'loadTestByIdFailure: null,createTestPending: false,\n' +
+  'createTestSuccess: false,\n' +
+  'createTestFailure: null,updateTestPending: false,\n' +
+  'updateTestSuccess: false,\n' +
+  'updateTestFailure: null,deleteTestPending: false,\n' +
+  'deleteTestSuccess: false,\n' +
+  'deleteTestFailure: null,})),\n' +
+  '  ];\n' +
+  '}\n';
 
-const DOMAIN_TEST_SELECTORS_EMPTY = 'import { getExampleDomainState } from \'../example-domain.selectors\';\r\n' +
-  'import { State } from \'../example-domain.reducer\';\r\n' +
+const DOMAIN_TEST_SELECTORS_EMPTY = 'import { getExampleDomainState } from \'../example-domain.selectors\';\n' +
+  'import { State } from \'../example-domain.reducer\';\n' +
   'import { createSelector } from \'@ngrx/store\';';
 
-const DOMAIN_TEST_SELECTORS = 'import { getExampleDomainState } from \'../example-domain.selectors\';\r\n' +
-  'import { State } from \'../example-domain.reducer\';\r\n' +
+const DOMAIN_TEST_SELECTORS = 'import { getExampleDomainState } from \'../example-domain.selectors\';\n' +
+  'import { State } from \'../example-domain.reducer\';\n' +
   'import { createSelector } from \'@ngrx/store\';\n\n' +
-  'export const getTest = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.test\r\n' +
+  'export const getTest = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.test\n' +
   ');\n\n' +
-  'export const getTestList = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.testList\r\n' +
+  'export const getTestList = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.testList\n' +
   ');\n\n' +
-  'export const getLoadTestListPending = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.loadTestListPending\r\n' +
+  'export const getLoadTestListPending = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.loadTestListPending\n' +
   ');\n\n' +
-  'export const getLoadTestListSuccess = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.loadTestListSuccess\r\n' +
+  'export const getLoadTestListSuccess = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.loadTestListSuccess\n' +
   ');\n\n' +
-  'export const getLoadTestListFailure = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.loadTestListFailure\r\n' +
+  'export const getLoadTestListFailure = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.loadTestListFailure\n' +
   ');\n\n' +
-  'export const getLoadTestByIdPending = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.loadTestByIdPending\r\n' +
+  'export const getLoadTestByIdPending = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.loadTestByIdPending\n' +
   ');\n\n' +
-  'export const getLoadTestByIdSuccess = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.loadTestByIdSuccess\r\n' +
+  'export const getLoadTestByIdSuccess = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.loadTestByIdSuccess\n' +
   ');\n\n' +
-  'export const getLoadTestByIdFailure = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.loadTestByIdFailure\r\n' +
+  'export const getLoadTestByIdFailure = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.loadTestByIdFailure\n' +
   ');\n\n' +
-  'export const getCreateTestPending = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.createTestPending\r\n' +
+  'export const getCreateTestPending = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.createTestPending\n' +
   ');\n\n' +
-  'export const getCreateTestSuccess = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.createTestSuccess\r\n' +
+  'export const getCreateTestSuccess = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.createTestSuccess\n' +
   ');\n\n' +
-  'export const getCreateTestFailure = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.createTestFailure\r\n' +
+  'export const getCreateTestFailure = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.createTestFailure\n' +
   ');\n\n' +
-  'export const getUpdateTestPending = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.updateTestPending\r\n' +
+  'export const getUpdateTestPending = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.updateTestPending\n' +
   ');\n\n' +
-  'export const getUpdateTestSuccess = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.updateTestSuccess\r\n' +
+  'export const getUpdateTestSuccess = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.updateTestSuccess\n' +
   ');\n\n' +
-  'export const getUpdateTestFailure = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.updateTestFailure\r\n' +
+  'export const getUpdateTestFailure = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.updateTestFailure\n' +
   ');\n\n' +
-  'export const getDeleteTestPending = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.deleteTestPending\r\n' +
+  'export const getDeleteTestPending = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.deleteTestPending\n' +
   ');\n\n' +
-  'export const getDeleteTestSuccess = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.deleteTestSuccess\r\n' +
+  'export const getDeleteTestSuccess = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.deleteTestSuccess\n' +
   ');\n\n' +
-  'export const getDeleteTestFailure = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.deleteTestFailure\r\n' +
+  'export const getDeleteTestFailure = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.deleteTestFailure\n' +
   ');\n\n';
 
 const DOMAIN_YEAH_ACTIONS_EMPTY = 'import { createAction, props } from \'@ngrx/store\';';
 
 const DOMAIN_YEAH_ACTIONS = 'import { createAction, props } from \'@ngrx/store\';\n\n' +
-  '/*\r\n' +
-  ' * loadYeahList\r\n' +
-  ' */\r\n' +
-  'export const loadYeahList = createAction(\r\n' +
-  '  \'[ExampleDomain] loadYeahList\',\r\n' +
-  '  props<{ id: string }>()\r\n' +
-  ');\r\n' +
-  'export const loadYeahListSuccess = createAction(\r\n' +
-  '  \'[ExampleDomain] loadYeahListSuccess\',\r\n' +
-  '  props<{ yeahList: Yeah[] }>()\r\n' +
-  ');\r\n' +
-  'export const loadYeahListFailure = createAction(\r\n' +
-  '  \'[ExampleDomain] loadYeahListFailure\',\r\n' +
-  '  props<{ error: Error }>()\r\n' +
+  '/*\n' +
+  ' * loadYeahList\n' +
+  ' */\n' +
+  'export const loadYeahList = createAction(\n' +
+  '  \'[ExampleDomain] loadYeahList\',\n' +
+  '  props<{ id: string }>()\n' +
+  ');\n' +
+  'export const loadYeahListSuccess = createAction(\n' +
+  '  \'[ExampleDomain] loadYeahListSuccess\',\n' +
+  '  props<{ yeahList: Yeah[] }>()\n' +
+  ');\n' +
+  'export const loadYeahListFailure = createAction(\n' +
+  '  \'[ExampleDomain] loadYeahListFailure\',\n' +
+  '  props<{ error: Error }>()\n' +
   ');\n\n' +
-  '/*\r\n' +
-  ' * loadYeahById\r\n' +
-  ' */\r\n' +
-  'export const loadYeahById = createAction(\r\n' +
-  '  \'[ExampleDomain] loadYeahById\',\r\n' +
-  '  props<{ yeahId: string }>()\r\n' +
-  ');\r\n' +
-  'export const loadYeahByIdSuccess = createAction(\r\n' +
-  '  \'[ExampleDomain] loadYeahByIdSuccess\',\r\n' +
-  '  props<{ yeah: Yeah }>()\r\n' +
-  ');\r\n' +
-  'export const loadYeahByIdFailure = createAction(\r\n' +
-  '  \'[ExampleDomain] loadYeahByIdFailure\',\r\n' +
-  '  props<{ error: Error }>()\r\n' +
+  '/*\n' +
+  ' * loadYeahById\n' +
+  ' */\n' +
+  'export const loadYeahById = createAction(\n' +
+  '  \'[ExampleDomain] loadYeahById\',\n' +
+  '  props<{ yeahId: string }>()\n' +
+  ');\n' +
+  'export const loadYeahByIdSuccess = createAction(\n' +
+  '  \'[ExampleDomain] loadYeahByIdSuccess\',\n' +
+  '  props<{ yeah: Yeah }>()\n' +
+  ');\n' +
+  'export const loadYeahByIdFailure = createAction(\n' +
+  '  \'[ExampleDomain] loadYeahByIdFailure\',\n' +
+  '  props<{ error: Error }>()\n' +
   ');\n\n' +
-  '/*\r\n' +
-  ' * createYeah\r\n' +
-  ' */\r\n' +
-  'export const createYeah = createAction(\r\n' +
-  '  \'[ExampleDomain] createYeah\',\r\n' +
-  '  props<{ yeah: Yeah }>()\r\n' +
-  ');\r\n' +
-  'export const createYeahSuccess = createAction(\r\n' +
-  '  \'[ExampleDomain] createYeahSuccess\',\r\n' +
-  '  props<{ yeah: Yeah }>()\r\n' +
-  ');\r\n' +
-  'export const createYeahFailure = createAction(\r\n' +
-  '  \'[ExampleDomain] createYeahFailure\',\r\n' +
-  '  props<{ error: Error }>()\r\n' +
+  '/*\n' +
+  ' * createYeah\n' +
+  ' */\n' +
+  'export const createYeah = createAction(\n' +
+  '  \'[ExampleDomain] createYeah\',\n' +
+  '  props<{ yeah: Yeah }>()\n' +
+  ');\n' +
+  'export const createYeahSuccess = createAction(\n' +
+  '  \'[ExampleDomain] createYeahSuccess\',\n' +
+  '  props<{ yeah: Yeah }>()\n' +
+  ');\n' +
+  'export const createYeahFailure = createAction(\n' +
+  '  \'[ExampleDomain] createYeahFailure\',\n' +
+  '  props<{ error: Error }>()\n' +
   ');\n\n' +
-  '/*\r\n' +
-  ' * updateYeah\r\n' +
-  ' */\r\n' +
-  'export const updateYeah = createAction(\r\n' +
-  '  \'[ExampleDomain] updateYeah\',\r\n' +
-  '  props<{ yeahId: string; yeah: Yeah }>()\r\n' +
-  ');\r\n' +
-  'export const updateYeahSuccess = createAction(\r\n' +
-  '  \'[ExampleDomain] updateYeahSuccess\',\r\n' +
-  '  props<{ yeah: Yeah }>()\r\n' +
-  ');\r\n' +
-  'export const updateYeahFailure = createAction(\r\n' +
-  '  \'[ExampleDomain] updateYeahFailure\',\r\n' +
-  '  props<{ error: Error }>()\r\n' +
+  '/*\n' +
+  ' * updateYeah\n' +
+  ' */\n' +
+  'export const updateYeah = createAction(\n' +
+  '  \'[ExampleDomain] updateYeah\',\n' +
+  '  props<{ yeahId: string; yeah: Yeah }>()\n' +
+  ');\n' +
+  'export const updateYeahSuccess = createAction(\n' +
+  '  \'[ExampleDomain] updateYeahSuccess\',\n' +
+  '  props<{ yeah: Yeah }>()\n' +
+  ');\n' +
+  'export const updateYeahFailure = createAction(\n' +
+  '  \'[ExampleDomain] updateYeahFailure\',\n' +
+  '  props<{ error: Error }>()\n' +
   ');\n\n' +
-  '/*\r\n' +
-  ' * deleteYeah\r\n' +
-  ' */\r\n' +
-  'export const deleteYeah = createAction(\r\n' +
-  '  \'[ExampleDomain] deleteYeah\',\r\n' +
-  '  props<{ yeahId: string }>()\r\n' +
-  ');\r\n' +
-  'export const deleteYeahSuccess = createAction(\r\n' +
-  '  \'[ExampleDomain] deleteYeahSuccess\',\r\n' +
-  '  props<{ yeahId: string }>()\r\n' +
-  ');\r\n' +
-  'export const deleteYeahFailure = createAction(\r\n' +
-  '  \'[ExampleDomain] deleteYeahFailure\',\r\n' +
-  '  props<{ error: Error }>()\r\n' +
+  '/*\n' +
+  ' * deleteYeah\n' +
+  ' */\n' +
+  'export const deleteYeah = createAction(\n' +
+  '  \'[ExampleDomain] deleteYeah\',\n' +
+  '  props<{ yeahId: string }>()\n' +
+  ');\n' +
+  'export const deleteYeahSuccess = createAction(\n' +
+  '  \'[ExampleDomain] deleteYeahSuccess\',\n' +
+  '  props<{ yeahId: string }>()\n' +
+  ');\n' +
+  'export const deleteYeahFailure = createAction(\n' +
+  '  \'[ExampleDomain] deleteYeahFailure\',\n' +
+  '  props<{ error: Error }>()\n' +
   ');\n\n';
 
-const DOMAIN_YEAH_ACTIONS_RESETS_EMPTY = 'import { createAction } from \'@ngrx/store\';\r\n\r\n' +
-  '/*\r\n' +
-  ' * resetYeahAssets\r\n' +
-  ' */\r\n' +
-  'export const resetYeahAssets = createAction(\r\n' +
-  '  \'[ExampleDomain] resetYeahAssets\'\r\n' +
-  ');\r\n';
+const DOMAIN_YEAH_ACTIONS_RESETS_EMPTY = 'import { createAction } from \'@ngrx/store\';\n\n' +
+  '/*\n' +
+  ' * resetYeahAssets\n' +
+  ' */\n' +
+  'export const resetYeahAssets = createAction(\n' +
+  '  \'[ExampleDomain] resetYeahAssets\'\n' +
+  ');\n';
 
-const DOMAIN_YEAH_ACTIONS_RESETS = 'import { createAction } from \'@ngrx/store\';\r\n\r\n' +
-  '/*\r\n' +
-  ' * resetYeah\r\n' +
-  ' */\r\n' +
-  'export const resetYeah = createAction(\r\n' +
-  '  \'[ExampleDomain] resetYeah\',\r\n' +
+const DOMAIN_YEAH_ACTIONS_RESETS = 'import { createAction } from \'@ngrx/store\';\n\n' +
+  '/*\n' +
+  ' * resetYeah\n' +
+  ' */\n' +
+  'export const resetYeah = createAction(\n' +
+  '  \'[ExampleDomain] resetYeah\',\n' +
   ');\n\n' +
-  '/*\r\n' +
-  ' * resetYeahList\r\n' +
-  ' */\r\n' +
-  'export const resetYeahList = createAction(\r\n' +
-  '  \'[ExampleDomain] resetYeahList\',\r\n' +
+  '/*\n' +
+  ' * resetYeahList\n' +
+  ' */\n' +
+  'export const resetYeahList = createAction(\n' +
+  '  \'[ExampleDomain] resetYeahList\',\n' +
   ');\n\n' +
-  '/*\r\n' +
-  ' * resetYeahAssets\r\n' +
-  ' */\r\n' +
-  'export const resetYeahAssets = createAction(\r\n' +
-  '  \'[ExampleDomain] resetYeahAssets\'\r\n' +
-  ');\r\n';
+  '/*\n' +
+  ' * resetYeahAssets\n' +
+  ' */\n' +
+  'export const resetYeahAssets = createAction(\n' +
+  '  \'[ExampleDomain] resetYeahAssets\'\n' +
+  ');\n';
 
-const DOMAIN_YEAH_EFFECTS_EMPTY = 'import {act, Actions, createEffect, ofType} from \'@ngrx/effects\';\r\n' +
-  'import * as YeahActions from \'./yeah.actions\';\r\n' +
-  'import {catchError, map, switchMap} from \'rxjs/operators\';\r\n' +
-  'import {of} from \'rxjs\';\r\n' +
-  'import {Injectable} from \'@angular/core\';\r\n\r\n' +
-  '@Injectable()\r\n' +
-  'export class YeahEffects {\r\n' +
-  '  constructor(private actions$: Actions,private yeahService: YeahService,) {\r\n' +
-  '  }\r\n' +
-  '}\r\n';
+const DOMAIN_YEAH_EFFECTS_EMPTY = 'import {act, Actions, createEffect, ofType} from \'@ngrx/effects\';\n' +
+  'import * as YeahActions from \'./yeah.actions\';\n' +
+  'import {catchError, map, switchMap} from \'rxjs/operators\';\n' +
+  'import {of} from \'rxjs\';\n' +
+  'import {Injectable} from \'@angular/core\';\n\n' +
+  '@Injectable()\n' +
+  'export class YeahEffects {\n' +
+  '  constructor(private actions$: Actions,private yeahService: YeahService,) {\n' +
+  '  }\n' +
+  '}\n';
 
 const DOMAIN_YEAH_EFFECTS = '' +
-  'import {act, Actions, createEffect, ofType} from \'@ngrx/effects\';\r\n' +
-  'import * as YeahActions from \'./yeah.actions\';\r\n' +
-  'import {catchError, map, switchMap} from \'rxjs/operators\';\r\n' +
-  'import {of} from \'rxjs\';\r\n' +
-  'import {Injectable} from \'@angular/core\';\r\n\r\n' +
-  '@Injectable()\r\n' +
-  'export class YeahEffects {\r\n' +
-  '  loadYeahList$ = createEffect(() => {\r\n' +
-  '  return this.actions$.pipe(\r\n' +
-  '    ofType(YeahActions.loadYeahList),\r\n' +
-  '    switchMap((act) =>\r\n' +
-  '      this.yeahService.loadYeahList().pipe(\r\n' +
-  '        map(() =>\r\n' +
-  '          YeahActions.loadYeahListSuccess({\r\n' +
-  '          }),\r\n' +
-  '        ),\r\n' +
-  '        catchError((err) =>\r\n' +
-  '          of(\r\n' +
-  '            YeahActions.loadYeahListFailure({\r\n' +
-  '              error: err,\r\n' +
-  '            })\r\n' +
-  '          )\r\n' +
-  '        )\r\n' +
-  '      )\r\n' +
-  '    )\r\n' +
-  '  );\r\n' +
+  'import {act, Actions, createEffect, ofType} from \'@ngrx/effects\';\n' +
+  'import * as YeahActions from \'./yeah.actions\';\n' +
+  'import {catchError, map, switchMap} from \'rxjs/operators\';\n' +
+  'import {of} from \'rxjs\';\n' +
+  'import {Injectable} from \'@angular/core\';\n\n' +
+  '@Injectable()\n' +
+  'export class YeahEffects {\n' +
+  '  loadYeahList$ = createEffect(() => {\n' +
+  '  return this.actions$.pipe(\n' +
+  '    ofType(YeahActions.loadYeahList),\n' +
+  '    switchMap((act) =>\n' +
+  '      this.yeahService.loadYeahList().pipe(\n' +
+  '        map(() =>\n' +
+  '          YeahActions.loadYeahListSuccess({\n' +
+  '          }),\n' +
+  '        ),\n' +
+  '        catchError((err) =>\n' +
+  '          of(\n' +
+  '            YeahActions.loadYeahListFailure({\n' +
+  '              error: err,\n' +
+  '            })\n' +
+  '          )\n' +
+  '        )\n' +
+  '      )\n' +
+  '    )\n' +
+  '  );\n' +
   '});\n\n' +
-  'loadYeahById$ = createEffect(() => {\r\n' +
-  '  return this.actions$.pipe(\r\n' +
-  '    ofType(YeahActions.loadYeahById),\r\n' +
-  '    switchMap((act) =>\r\n' +
-  '      this.yeahService.loadYeahById().pipe(\r\n' +
-  '        map(() =>\r\n' +
-  '          YeahActions.loadYeahByIdSuccess({\r\n' +
-  '          }),\r\n' +
-  '        ),\r\n' +
-  '        catchError((err) =>\r\n' +
-  '          of(\r\n' +
-  '            YeahActions.loadYeahByIdFailure({\r\n' +
-  '              error: err,\r\n' +
-  '            })\r\n' +
-  '          )\r\n' +
-  '        )\r\n' +
-  '      )\r\n' +
-  '    )\r\n' +
-  '  );\r\n' +
+  'loadYeahById$ = createEffect(() => {\n' +
+  '  return this.actions$.pipe(\n' +
+  '    ofType(YeahActions.loadYeahById),\n' +
+  '    switchMap((act) =>\n' +
+  '      this.yeahService.loadYeahById().pipe(\n' +
+  '        map(() =>\n' +
+  '          YeahActions.loadYeahByIdSuccess({\n' +
+  '          }),\n' +
+  '        ),\n' +
+  '        catchError((err) =>\n' +
+  '          of(\n' +
+  '            YeahActions.loadYeahByIdFailure({\n' +
+  '              error: err,\n' +
+  '            })\n' +
+  '          )\n' +
+  '        )\n' +
+  '      )\n' +
+  '    )\n' +
+  '  );\n' +
   '});\n\n' +
-  'createYeah$ = createEffect(() => {\r\n' +
-  '  return this.actions$.pipe(\r\n' +
-  '    ofType(YeahActions.createYeah),\r\n' +
-  '    switchMap((act) =>\r\n' +
-  '      this.yeahService.createYeah().pipe(\r\n' +
-  '        map(() =>\r\n' +
-  '          YeahActions.createYeahSuccess({\r\n' +
-  '          }),\r\n' +
-  '        ),\r\n' +
-  '        catchError((err) =>\r\n' +
-  '          of(\r\n' +
-  '            YeahActions.createYeahFailure({\r\n' +
-  '              error: err,\r\n' +
-  '            })\r\n' +
-  '          )\r\n' +
-  '        )\r\n' +
-  '      )\r\n' +
-  '    )\r\n' +
-  '  );\r\n' +
+  'createYeah$ = createEffect(() => {\n' +
+  '  return this.actions$.pipe(\n' +
+  '    ofType(YeahActions.createYeah),\n' +
+  '    switchMap((act) =>\n' +
+  '      this.yeahService.createYeah().pipe(\n' +
+  '        map(() =>\n' +
+  '          YeahActions.createYeahSuccess({\n' +
+  '          }),\n' +
+  '        ),\n' +
+  '        catchError((err) =>\n' +
+  '          of(\n' +
+  '            YeahActions.createYeahFailure({\n' +
+  '              error: err,\n' +
+  '            })\n' +
+  '          )\n' +
+  '        )\n' +
+  '      )\n' +
+  '    )\n' +
+  '  );\n' +
   '});\n\n' +
-  'updateYeah$ = createEffect(() => {\r\n' +
-  '  return this.actions$.pipe(\r\n' +
-  '    ofType(YeahActions.updateYeah),\r\n' +
-  '    switchMap((act) =>\r\n' +
-  '      this.yeahService.updateYeah().pipe(\r\n' +
-  '        map(() =>\r\n' +
-  '          YeahActions.updateYeahSuccess({\r\n' +
-  '          }),\r\n' +
-  '        ),\r\n' +
-  '        catchError((err) =>\r\n' +
-  '          of(\r\n' +
-  '            YeahActions.updateYeahFailure({\r\n' +
-  '              error: err,\r\n' +
-  '            })\r\n' +
-  '          )\r\n' +
-  '        )\r\n' +
-  '      )\r\n' +
-  '    )\r\n' +
-  '  );\r\n' +
+  'updateYeah$ = createEffect(() => {\n' +
+  '  return this.actions$.pipe(\n' +
+  '    ofType(YeahActions.updateYeah),\n' +
+  '    switchMap((act) =>\n' +
+  '      this.yeahService.updateYeah().pipe(\n' +
+  '        map(() =>\n' +
+  '          YeahActions.updateYeahSuccess({\n' +
+  '          }),\n' +
+  '        ),\n' +
+  '        catchError((err) =>\n' +
+  '          of(\n' +
+  '            YeahActions.updateYeahFailure({\n' +
+  '              error: err,\n' +
+  '            })\n' +
+  '          )\n' +
+  '        )\n' +
+  '      )\n' +
+  '    )\n' +
+  '  );\n' +
   '});\n\n' +
-  'deleteYeah$ = createEffect(() => {\r\n' +
-  '  return this.actions$.pipe(\r\n' +
-  '    ofType(YeahActions.deleteYeah),\r\n' +
-  '    switchMap((act) =>\r\n' +
-  '      this.yeahService.deleteYeah().pipe(\r\n' +
-  '        map(() =>\r\n' +
-  '          YeahActions.deleteYeahSuccess({\r\n' +
-  '          }),\r\n' +
-  '        ),\r\n' +
-  '        catchError((err) =>\r\n' +
-  '          of(\r\n' +
-  '            YeahActions.deleteYeahFailure({\r\n' +
-  '              error: err,\r\n' +
-  '            })\r\n' +
-  '          )\r\n' +
-  '        )\r\n' +
-  '      )\r\n' +
-  '    )\r\n' +
-  '  );\r\n' +
+  'deleteYeah$ = createEffect(() => {\n' +
+  '  return this.actions$.pipe(\n' +
+  '    ofType(YeahActions.deleteYeah),\n' +
+  '    switchMap((act) =>\n' +
+  '      this.yeahService.deleteYeah().pipe(\n' +
+  '        map(() =>\n' +
+  '          YeahActions.deleteYeahSuccess({\n' +
+  '          }),\n' +
+  '        ),\n' +
+  '        catchError((err) =>\n' +
+  '          of(\n' +
+  '            YeahActions.deleteYeahFailure({\n' +
+  '              error: err,\n' +
+  '            })\n' +
+  '          )\n' +
+  '        )\n' +
+  '      )\n' +
+  '    )\n' +
+  '  );\n' +
   '});\n\n' +
-  'constructor(private actions$: Actions,private yeahService: YeahService,) {\r\n' +
-  '  }\r\n' +
-  '}\r\n';
+  'constructor(private actions$: Actions,private yeahService: YeahService,) {\n' +
+  '  }\n' +
+  '}\n';
 
-const DOMAIN_YEAH_FACADE_EMPTY = 'import { Injectable } from \'@angular/core\';\r\n' +
-  'import { select, Store } from \'@ngrx/store\';\r\n' +
-  'import * as YeahSelectors from \'./yeah.selectors\';\r\n' +
-  'import * as fromExampleDomain from \'../example-domain.reducer\';\r\n' +
-  'import * as YeahActions from \'./yeah.actions\';\r\n' +
-  'import {YeahResetsFacade} from \'./yeah.facade.resets\';\r\n\r\n' +
-  '@Injectable()\r\n' +
-  'export class YeahFacade extends YeahResetsFacade {\r\n' +
-  '  constructor(\r\n' +
-  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\r\n' +
-  '  ) {\r\n' +
-  '    super(store);\r\n' +
-  '  }\r\n' +
-  '}\r\n';
+const DOMAIN_YEAH_FACADE_EMPTY = 'import { Injectable } from \'@angular/core\';\n' +
+  'import { select, Store } from \'@ngrx/store\';\n' +
+  'import * as YeahSelectors from \'./yeah.selectors\';\n' +
+  'import * as fromExampleDomain from \'../example-domain.reducer\';\n' +
+  'import * as YeahActions from \'./yeah.actions\';\n' +
+  'import {YeahResetsFacade} from \'./yeah.facade.resets\';\n\n' +
+  '@Injectable()\n' +
+  'export class YeahFacade extends YeahResetsFacade {\n' +
+  '  constructor(\n' +
+  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\n' +
+  '  ) {\n' +
+  '    super(store);\n' +
+  '  }\n' +
+  '}\n';
 
-const DOMAIN_YEAH_FACADE = 'import { Injectable } from \'@angular/core\';\r\n' +
-  'import { select, Store } from \'@ngrx/store\';\r\n' +
-  'import * as YeahSelectors from \'./yeah.selectors\';\r\n' +
-  'import * as fromExampleDomain from \'../example-domain.reducer\';\r\n' +
-  'import * as YeahActions from \'./yeah.actions\';\r\n' +
-  'import {YeahResetsFacade} from \'./yeah.facade.resets\';\r\n\r\n' +
-  '@Injectable()\r\n' +
-  'export class YeahFacade extends YeahResetsFacade {\r\n' +
-  '  yeah$ = this.store.pipe(select(YeahSelectors.getYeah));yeahList$ = this.store.pipe(select(YeahSelectors.getYeahList));loadYeahListPending$ = this.store.pipe(select(YeahSelectors.getLoadYeahListPending));loadYeahListSuccess$ = this.store.pipe(select(YeahSelectors.getLoadYeahListSuccess));loadYeahListFailure$ = this.store.pipe(select(YeahSelectors.getLoadYeahListFailure));loadYeahByIdPending$ = this.store.pipe(select(YeahSelectors.getLoadYeahByIdPending));loadYeahByIdSuccess$ = this.store.pipe(select(YeahSelectors.getLoadYeahByIdSuccess));loadYeahByIdFailure$ = this.store.pipe(select(YeahSelectors.getLoadYeahByIdFailure));createYeahPending$ = this.store.pipe(select(YeahSelectors.getCreateYeahPending));createYeahSuccess$ = this.store.pipe(select(YeahSelectors.getCreateYeahSuccess));createYeahFailure$ = this.store.pipe(select(YeahSelectors.getCreateYeahFailure));updateYeahPending$ = this.store.pipe(select(YeahSelectors.getUpdateYeahPending));updateYeahSuccess$ = this.store.pipe(select(YeahSelectors.getUpdateYeahSuccess));updateYeahFailure$ = this.store.pipe(select(YeahSelectors.getUpdateYeahFailure));deleteYeahPending$ = this.store.pipe(select(YeahSelectors.getDeleteYeahPending));deleteYeahSuccess$ = this.store.pipe(select(YeahSelectors.getDeleteYeahSuccess));deleteYeahFailure$ = this.store.pipe(select(YeahSelectors.getDeleteYeahFailure));loadYeahList(id: string) {\r\n' +
-  '  this.dispatch(YeahActions.loadYeahList({ id }));\r\n' +
+const DOMAIN_YEAH_FACADE = 'import { Injectable } from \'@angular/core\';\n' +
+  'import { select, Store } from \'@ngrx/store\';\n' +
+  'import * as YeahSelectors from \'./yeah.selectors\';\n' +
+  'import * as fromExampleDomain from \'../example-domain.reducer\';\n' +
+  'import * as YeahActions from \'./yeah.actions\';\n' +
+  'import {YeahResetsFacade} from \'./yeah.facade.resets\';\n\n' +
+  '@Injectable()\n' +
+  'export class YeahFacade extends YeahResetsFacade {\n' +
+  '  yeah$ = this.store.pipe(select(YeahSelectors.getYeah));yeahList$ = this.store.pipe(select(YeahSelectors.getYeahList));loadYeahListPending$ = this.store.pipe(select(YeahSelectors.getLoadYeahListPending));loadYeahListSuccess$ = this.store.pipe(select(YeahSelectors.getLoadYeahListSuccess));loadYeahListFailure$ = this.store.pipe(select(YeahSelectors.getLoadYeahListFailure));loadYeahByIdPending$ = this.store.pipe(select(YeahSelectors.getLoadYeahByIdPending));loadYeahByIdSuccess$ = this.store.pipe(select(YeahSelectors.getLoadYeahByIdSuccess));loadYeahByIdFailure$ = this.store.pipe(select(YeahSelectors.getLoadYeahByIdFailure));createYeahPending$ = this.store.pipe(select(YeahSelectors.getCreateYeahPending));createYeahSuccess$ = this.store.pipe(select(YeahSelectors.getCreateYeahSuccess));createYeahFailure$ = this.store.pipe(select(YeahSelectors.getCreateYeahFailure));updateYeahPending$ = this.store.pipe(select(YeahSelectors.getUpdateYeahPending));updateYeahSuccess$ = this.store.pipe(select(YeahSelectors.getUpdateYeahSuccess));updateYeahFailure$ = this.store.pipe(select(YeahSelectors.getUpdateYeahFailure));deleteYeahPending$ = this.store.pipe(select(YeahSelectors.getDeleteYeahPending));deleteYeahSuccess$ = this.store.pipe(select(YeahSelectors.getDeleteYeahSuccess));deleteYeahFailure$ = this.store.pipe(select(YeahSelectors.getDeleteYeahFailure));loadYeahList(id: string) {\n' +
+  '  this.dispatch(YeahActions.loadYeahList({ id }));\n' +
   '}\n\n' +
-  'loadYeahById(yeahId: string) {\r\n' +
-  '  this.dispatch(YeahActions.loadYeahById({ yeahId }));\r\n' +
+  'loadYeahById(yeahId: string) {\n' +
+  '  this.dispatch(YeahActions.loadYeahById({ yeahId }));\n' +
   '}\n\n' +
-  'createYeah(yeah: Yeah) {\r\n' +
-  '  this.dispatch(YeahActions.createYeah({ yeah }));\r\n' +
+  'createYeah(yeah: Yeah) {\n' +
+  '  this.dispatch(YeahActions.createYeah({ yeah }));\n' +
   '}\n\n' +
-  'updateYeah(yeahId: string, yeah: Yeah) {\r\n' +
-  '  this.dispatch(YeahActions.updateYeah({ yeahId, yeah }));\r\n' +
+  'updateYeah(yeahId: string, yeah: Yeah) {\n' +
+  '  this.dispatch(YeahActions.updateYeah({ yeahId, yeah }));\n' +
   '}\n\n' +
-  'deleteYeah(yeahId: string) {\r\n' +
-  '  this.dispatch(YeahActions.deleteYeah({ yeahId }));\r\n' +
+  'deleteYeah(yeahId: string) {\n' +
+  '  this.dispatch(YeahActions.deleteYeah({ yeahId }));\n' +
   '}\n\n' +
-  'constructor(\r\n' +
-  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\r\n' +
-  '  ) {\r\n' +
-  '    super(store);\r\n' +
-  '  }\r\n' +
-  '}\r\n';
+  'constructor(\n' +
+  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\n' +
+  '  ) {\n' +
+  '    super(store);\n' +
+  '  }\n' +
+  '}\n';
 
-const DOMAIN_YEAH_FACADE_RESETS_EMPTY = 'import { Injectable } from \'@angular/core\';\r\n' +
-  'import { Action, Store } from \'@ngrx/store\';\r\n' +
-  'import * as fromExampleDomain from \'../example-domain.reducer\';\r\n' +
-  'import * as YeahResetsActions from \'./yeah.actions.resets\';\r\n\r\n' +
-  '@Injectable()\r\n' +
-  'export class YeahResetsFacade {\r\n' +
-  '  resetYeahAssets() {\r\n' +
-  '    this.dispatch(YeahResetsActions.resetYeahAssets());\r\n' +
-  '  }\r\n\r\n' +
-  '  constructor(\r\n' +
-  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\r\n' +
-  '  ) {}\r\n\r\n' +
-  '  protected dispatch(action: Action) {\r\n' +
-  '    this.store.dispatch(action);\r\n' +
-  '  }\r\n' +
-  '}\r\n';
+const DOMAIN_YEAH_FACADE_RESETS_EMPTY = 'import { Injectable } from \'@angular/core\';\n' +
+  'import { Action, Store } from \'@ngrx/store\';\n' +
+  'import * as fromExampleDomain from \'../example-domain.reducer\';\n' +
+  'import * as YeahResetsActions from \'./yeah.actions.resets\';\n\n' +
+  '@Injectable()\n' +
+  'export class YeahResetsFacade {\n' +
+  '  resetYeahAssets() {\n' +
+  '    this.dispatch(YeahResetsActions.resetYeahAssets());\n' +
+  '  }\n\n' +
+  '  constructor(\n' +
+  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\n' +
+  '  ) {}\n\n' +
+  '  protected dispatch(action: Action) {\n' +
+  '    this.store.dispatch(action);\n' +
+  '  }\n' +
+  '}\n';
 
-const DOMAIN_YEAH_FACADE_RESETS = 'import { Injectable } from \'@angular/core\';\r\n' +
-  'import { Action, Store } from \'@ngrx/store\';\r\n' +
-  'import * as fromExampleDomain from \'../example-domain.reducer\';\r\n' +
-  'import * as YeahResetsActions from \'./yeah.actions.resets\';\r\n\r\n' +
-  '@Injectable()\r\n' +
-  'export class YeahResetsFacade {\r\n' +
-  '  resetYeah() {\r\n' +
-  '  this.dispatch(YeahResetsActions.resetYeah());\r\n' +
+const DOMAIN_YEAH_FACADE_RESETS = 'import { Injectable } from \'@angular/core\';\n' +
+  'import { Action, Store } from \'@ngrx/store\';\n' +
+  'import * as fromExampleDomain from \'../example-domain.reducer\';\n' +
+  'import * as YeahResetsActions from \'./yeah.actions.resets\';\n\n' +
+  '@Injectable()\n' +
+  'export class YeahResetsFacade {\n' +
+  '  resetYeah() {\n' +
+  '  this.dispatch(YeahResetsActions.resetYeah());\n' +
   '}\n\n' +
-  'resetYeahList() {\r\n' +
-  '  this.dispatch(YeahResetsActions.resetYeahList());\r\n' +
+  'resetYeahList() {\n' +
+  '  this.dispatch(YeahResetsActions.resetYeahList());\n' +
   '}\n\n' +
-  'resetYeahAssets() {\r\n' +
-  '    this.dispatch(YeahResetsActions.resetYeahAssets());\r\n' +
-  '  }\r\n\r\n' +
-  '  constructor(\r\n' +
-  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\r\n' +
-  '  ) {}\r\n\r\n' +
-  '  protected dispatch(action: Action) {\r\n' +
-  '    this.store.dispatch(action);\r\n' +
-  '  }\r\n' +
-  '}\r\n';
+  'resetYeahAssets() {\n' +
+  '    this.dispatch(YeahResetsActions.resetYeahAssets());\n' +
+  '  }\n\n' +
+  '  constructor(\n' +
+  '    protected store: Store<fromExampleDomain.ExampleDomainPartialState>,\n' +
+  '  ) {}\n\n' +
+  '  protected dispatch(action: Action) {\n' +
+  '    this.store.dispatch(action);\n' +
+  '  }\n' +
+  '}\n';
 
-const DOMAIN_YEAH_REDUCER_EMPTY = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\r\n' +
-  'import * as YeahActions from \'./yeah.actions\';\r\n' +
-  'import {getYeahResetsOns} from \'./yeah.reducer.resets\';\r\n' +
-  'import {replaceArrayItem} from \'@tpx1/util\';\r\n\r\n' +
-  'export interface YeahState {}\r\n\r\n' +
-  'export const yeahInitialState: YeahState = {\r\n' +
-  '   // Use carefully! yeahInitialState should be empty.\r\n' +
-  '   // Arrays should be initiated with undefined or null to differ between unloaded array and loaded empty array.\r\n' +
-  '};\r\n\r\n' +
-  'export function getYeahOns<T extends YeahState>(): ReducerTypes<T, ActionCreator[]>[] {\r\n' +
-  '  return [...getYeahResetsOns<T>(),];\r\n' +
-  '}\r\n';
+const DOMAIN_YEAH_REDUCER_EMPTY = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\n' +
+  'import * as YeahActions from \'./yeah.actions\';\n' +
+  'import {getYeahResetsOns} from \'./yeah.reducer.resets\';\n' +
+  'import {replaceArrayItem} from \'@tpx1/util\';\n\n' +
+  'export interface YeahState {}\n\n' +
+  'export const yeahInitialState: YeahState = {\n' +
+  '   // Use carefully! yeahInitialState should be empty.\n' +
+  '   // Arrays should be initiated with undefined or null to differ between unloaded array and loaded empty array.\n' +
+  '};\n\n' +
+  'export function getYeahOns<T extends YeahState>(): ReducerTypes<T, ActionCreator[]>[] {\n' +
+  '  return [...getYeahResetsOns<T>(),];\n' +
+  '}\n';
 
-const DOMAIN_YEAH_REDUCER = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\r\n' +
-  'import * as YeahActions from \'./yeah.actions\';\r\n' +
-  'import {getYeahResetsOns} from \'./yeah.reducer.resets\';\r\n' +
-  'import {replaceArrayItem} from \'@tpx1/util\';\r\n\r\n' +
-  'export interface YeahState {yeah?: Yeah;yeahList?: Yeah[];loadYeahListPending?: boolean;\r\n' +
-  'loadYeahListSuccess?: boolean;\r\n' +
-  'loadYeahListFailure?: Error;loadYeahByIdPending?: boolean;\r\n' +
-  'loadYeahByIdSuccess?: boolean;\r\n' +
-  'loadYeahByIdFailure?: Error;createYeahPending?: boolean;\r\n' +
-  'createYeahSuccess?: boolean;\r\n' +
-  'createYeahFailure?: Error;updateYeahPending?: boolean;\r\n' +
-  'updateYeahSuccess?: boolean;\r\n' +
-  'updateYeahFailure?: Error;deleteYeahPending?: boolean;\r\n' +
-  'deleteYeahSuccess?: boolean;\r\n' +
-  'deleteYeahFailure?: Error;}\r\n\r\n' +
-  'export const yeahInitialState: YeahState = {\r\n' +
-  '   // Use carefully! yeahInitialState should be empty.\r\n' +
-  '   // Arrays should be initiated with undefined or null to differ between unloaded array and loaded empty array.\r\n' +
-  '};\r\n\r\n' +
-  'export function getYeahOns<T extends YeahState>(): ReducerTypes<T, ActionCreator[]>[] {\r\n' +
+const DOMAIN_YEAH_REDUCER = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\n' +
+  'import * as YeahActions from \'./yeah.actions\';\n' +
+  'import {getYeahResetsOns} from \'./yeah.reducer.resets\';\n' +
+  'import {replaceArrayItem} from \'@tpx1/util\';\n\n' +
+  'export interface YeahState {yeah?: Yeah;yeahList?: Yeah[];loadYeahListPending?: boolean;\n' +
+  'loadYeahListSuccess?: boolean;\n' +
+  'loadYeahListFailure?: Error;loadYeahByIdPending?: boolean;\n' +
+  'loadYeahByIdSuccess?: boolean;\n' +
+  'loadYeahByIdFailure?: Error;createYeahPending?: boolean;\n' +
+  'createYeahSuccess?: boolean;\n' +
+  'createYeahFailure?: Error;updateYeahPending?: boolean;\n' +
+  'updateYeahSuccess?: boolean;\n' +
+  'updateYeahFailure?: Error;deleteYeahPending?: boolean;\n' +
+  'deleteYeahSuccess?: boolean;\n' +
+  'deleteYeahFailure?: Error;}\n\n' +
+  'export const yeahInitialState: YeahState = {\n' +
+  '   // Use carefully! yeahInitialState should be empty.\n' +
+  '   // Arrays should be initiated with undefined or null to differ between unloaded array and loaded empty array.\n' +
+  '};\n\n' +
+  'export function getYeahOns<T extends YeahState>(): ReducerTypes<T, ActionCreator[]>[] {\n' +
   '  return [...getYeahResetsOns<T>(),\n\n' +
-  '/*\r\n' +
-  ' * loadYeahList\r\n' +
-  ' */\r\n' +
-  'on(YeahActions.loadYeahList, (state) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  yeahList: null,\r\n' +
-  '  loadYeahListPending: true,\r\n' +
-  '  loadYeahListSuccess: false,\r\n' +
-  '  loadYeahListFailure: null,\r\n' +
-  '})),\r\n' +
-  'on(YeahActions.loadYeahListSuccess, (state, {yeahList}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  yeahList: yeahList,\r\n' +
-  '  loadYeahListPending: false,\r\n' +
-  '  loadYeahListSuccess: true,\r\n' +
-  '})),\r\n' +
-  'on(YeahActions.loadYeahListFailure, (state, {error}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  loadYeahListPending: false,\r\n' +
-  '  loadYeahListFailure: error,\r\n' +
+  '/*\n' +
+  ' * loadYeahList\n' +
+  ' */\n' +
+  'on(YeahActions.loadYeahList, (state) => ({\n' +
+  '  ...state,\n' +
+  '  yeahList: null,\n' +
+  '  loadYeahListPending: true,\n' +
+  '  loadYeahListSuccess: false,\n' +
+  '  loadYeahListFailure: null,\n' +
+  '})),\n' +
+  'on(YeahActions.loadYeahListSuccess, (state, {yeahList}) => ({\n' +
+  '  ...state,\n' +
+  '  yeahList: yeahList,\n' +
+  '  loadYeahListPending: false,\n' +
+  '  loadYeahListSuccess: true,\n' +
+  '})),\n' +
+  'on(YeahActions.loadYeahListFailure, (state, {error}) => ({\n' +
+  '  ...state,\n' +
+  '  loadYeahListPending: false,\n' +
+  '  loadYeahListFailure: error,\n' +
   '})),\n\n' +
-  '/*\r\n' +
-  ' * loadYeahById\r\n' +
-  ' */\r\n' +
-  'on(YeahActions.loadYeahById, (state) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  yeah: null,\r\n' +
-  '  loadYeahByIdPending: true,\r\n' +
-  '  loadYeahByIdSuccess: false,\r\n' +
-  '  loadYeahByIdFailure: null,\r\n' +
-  '})),\r\n' +
-  'on(YeahActions.loadYeahByIdSuccess, (state, {yeah}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  yeah: yeah,\r\n' +
-  '  loadYeahByIdPending: false,\r\n' +
-  '  loadYeahByIdSuccess: true,\r\n' +
-  '})),\r\n' +
-  'on(YeahActions.loadYeahByIdFailure, (state, {error}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  loadYeahByIdPending: false,\r\n' +
-  '  loadYeahByIdFailure: error,\r\n' +
+  '/*\n' +
+  ' * loadYeahById\n' +
+  ' */\n' +
+  'on(YeahActions.loadYeahById, (state) => ({\n' +
+  '  ...state,\n' +
+  '  yeah: null,\n' +
+  '  loadYeahByIdPending: true,\n' +
+  '  loadYeahByIdSuccess: false,\n' +
+  '  loadYeahByIdFailure: null,\n' +
+  '})),\n' +
+  'on(YeahActions.loadYeahByIdSuccess, (state, {yeah}) => ({\n' +
+  '  ...state,\n' +
+  '  yeah: yeah,\n' +
+  '  loadYeahByIdPending: false,\n' +
+  '  loadYeahByIdSuccess: true,\n' +
+  '})),\n' +
+  'on(YeahActions.loadYeahByIdFailure, (state, {error}) => ({\n' +
+  '  ...state,\n' +
+  '  loadYeahByIdPending: false,\n' +
+  '  loadYeahByIdFailure: error,\n' +
   '})),\n\n' +
-  '/*\r\n' +
-  ' * createYeah\r\n' +
-  ' */\r\n' +
-  'on(YeahActions.createYeah, (state) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  createYeahPending: true,\r\n' +
-  '  createYeahSuccess: false,\r\n' +
-  '  createYeahFailure: null,\r\n' +
-  '})),\r\n' +
-  'on(YeahActions.createYeahSuccess, (state, {yeah}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  yeah: yeah,\r\n' +
-  '  yeahList: [...(state.yeahList || []), yeah],\r\n' +
-  '  createYeahPending: false,\r\n' +
-  '  createYeahSuccess: true,\r\n' +
-  '})),\r\n' +
-  'on(YeahActions.createYeahFailure, (state, {error}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  createYeahPending: false,\r\n' +
-  '  createYeahFailure: error,\r\n' +
+  '/*\n' +
+  ' * createYeah\n' +
+  ' */\n' +
+  'on(YeahActions.createYeah, (state) => ({\n' +
+  '  ...state,\n' +
+  '  createYeahPending: true,\n' +
+  '  createYeahSuccess: false,\n' +
+  '  createYeahFailure: null,\n' +
+  '})),\n' +
+  'on(YeahActions.createYeahSuccess, (state, {yeah}) => ({\n' +
+  '  ...state,\n' +
+  '  yeah: yeah,\n' +
+  '  yeahList: [...(state.yeahList || []), yeah],\n' +
+  '  createYeahPending: false,\n' +
+  '  createYeahSuccess: true,\n' +
+  '})),\n' +
+  'on(YeahActions.createYeahFailure, (state, {error}) => ({\n' +
+  '  ...state,\n' +
+  '  createYeahPending: false,\n' +
+  '  createYeahFailure: error,\n' +
   '})),\n\n' +
-  '/*\r\n' +
-  ' * updateYeah\r\n' +
-  ' */\r\n' +
-  'on(YeahActions.updateYeah, (state) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  updateYeahPending: true,\r\n' +
-  '  updateYeahSuccess: false,\r\n' +
-  '  updateYeahFailure: null,\r\n' +
-  '})),\r\n' +
-  'on(YeahActions.updateYeahSuccess, (state, {yeah}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  yeah: yeah,\r\n' +
-  '  yeahList: replaceArrayItem(state.yeahList, yeah, \'id\'),\r\n' +
-  '  updateYeahPending: false,\r\n' +
-  '  updateYeahSuccess: true,\r\n' +
-  '})),\r\n' +
-  'on(YeahActions.updateYeahFailure, (state, {error}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  updateYeahPending: false,\r\n' +
-  '  updateYeahFailure: error,\r\n' +
+  '/*\n' +
+  ' * updateYeah\n' +
+  ' */\n' +
+  'on(YeahActions.updateYeah, (state) => ({\n' +
+  '  ...state,\n' +
+  '  updateYeahPending: true,\n' +
+  '  updateYeahSuccess: false,\n' +
+  '  updateYeahFailure: null,\n' +
+  '})),\n' +
+  'on(YeahActions.updateYeahSuccess, (state, {yeah}) => ({\n' +
+  '  ...state,\n' +
+  '  yeah: yeah,\n' +
+  '  yeahList: replaceArrayItem(state.yeahList, yeah, \'id\'),\n' +
+  '  updateYeahPending: false,\n' +
+  '  updateYeahSuccess: true,\n' +
+  '})),\n' +
+  'on(YeahActions.updateYeahFailure, (state, {error}) => ({\n' +
+  '  ...state,\n' +
+  '  updateYeahPending: false,\n' +
+  '  updateYeahFailure: error,\n' +
   '})),\n\n' +
-  '/*\r\n' +
-  ' * deleteYeah\r\n' +
-  ' */\r\n' +
-  'on(YeahActions.deleteYeah, (state) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  deleteYeahPending: true,\r\n' +
-  '  deleteYeahSuccess: false,\r\n' +
-  '  deleteYeahFailure: null,\r\n' +
-  '})),\r\n' +
-  'on(YeahActions.deleteYeahSuccess, (state, {yeahId}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  yeahList: [...state.yeahList?.filter(v => v.id !== yeahId) || []],\r\n' +
-  '  deleteYeahPending: false,\r\n' +
-  '  deleteYeahSuccess: true,\r\n' +
-  '})),\r\n' +
-  'on(YeahActions.deleteYeahFailure, (state, {error}) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  deleteYeahPending: false,\r\n' +
-  '  deleteYeahFailure: error,\r\n' +
+  '/*\n' +
+  ' * deleteYeah\n' +
+  ' */\n' +
+  'on(YeahActions.deleteYeah, (state) => ({\n' +
+  '  ...state,\n' +
+  '  deleteYeahPending: true,\n' +
+  '  deleteYeahSuccess: false,\n' +
+  '  deleteYeahFailure: null,\n' +
+  '})),\n' +
+  'on(YeahActions.deleteYeahSuccess, (state, {yeahId}) => ({\n' +
+  '  ...state,\n' +
+  '  yeahList: [...state.yeahList?.filter(v => v.id !== yeahId) || []],\n' +
+  '  deleteYeahPending: false,\n' +
+  '  deleteYeahSuccess: true,\n' +
+  '})),\n' +
+  'on(YeahActions.deleteYeahFailure, (state, {error}) => ({\n' +
+  '  ...state,\n' +
+  '  deleteYeahPending: false,\n' +
+  '  deleteYeahFailure: error,\n' +
   '})),\n\n' +
-  '];\r\n' +
-  '}\r\n';
+  '];\n' +
+  '}\n';
 
-const DOMAIN_YEAH_REDUCER_RESETS_EMPTY = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\r\n' +
-  'import * as YeahResetsActions from \'./yeah.actions.resets\';\r\n' +
-  'import {YeahState} from \'./yeah.reducer\';\r\n\r\n' +
-  'export function getYeahResetsOns<T extends YeahState>(): ReducerTypes<T, ActionCreator[]>[] {\r\n' +
-  '  return [\r\n' +
-  '    /*\r\n' +
-  '     * resetYeahAssets\r\n' +
-  '     */\r\n' +
-  '    on(YeahResetsActions.resetYeahAssets, (state) => ({...state,})),\r\n' +
-  '  ];\r\n' +
-  '}\r\n';
+const DOMAIN_YEAH_REDUCER_RESETS_EMPTY = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\n' +
+  'import * as YeahResetsActions from \'./yeah.actions.resets\';\n' +
+  'import {YeahState} from \'./yeah.reducer\';\n\n' +
+  'export function getYeahResetsOns<T extends YeahState>(): ReducerTypes<T, ActionCreator[]>[] {\n' +
+  '  return [\n' +
+  '    /*\n' +
+  '     * resetYeahAssets\n' +
+  '     */\n' +
+  '    on(YeahResetsActions.resetYeahAssets, (state) => ({...state,})),\n' +
+  '  ];\n' +
+  '}\n';
 
-const DOMAIN_YEAH_REDUCER_RESETS = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\r\n' +
-  'import * as YeahResetsActions from \'./yeah.actions.resets\';\r\n' +
-  'import {YeahState} from \'./yeah.reducer\';\r\n\r\n' +
-  'export function getYeahResetsOns<T extends YeahState>(): ReducerTypes<T, ActionCreator[]>[] {\r\n' +
-  '  return [\r\n' +
-  '    /*\r\n' +
-  ' * resetYeah\r\n' +
-  ' */\r\n' +
-  'on(YeahResetsActions.resetYeah, (state) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  yeah: null,\r\n' +
+const DOMAIN_YEAH_REDUCER_RESETS = 'import {ActionCreator, on, ReducerTypes} from \'@ngrx/store\';\n' +
+  'import * as YeahResetsActions from \'./yeah.actions.resets\';\n' +
+  'import {YeahState} from \'./yeah.reducer\';\n\n' +
+  'export function getYeahResetsOns<T extends YeahState>(): ReducerTypes<T, ActionCreator[]>[] {\n' +
+  '  return [\n' +
+  '    /*\n' +
+  ' * resetYeah\n' +
+  ' */\n' +
+  'on(YeahResetsActions.resetYeah, (state) => ({\n' +
+  '  ...state,\n' +
+  '  yeah: null,\n' +
   '})),\n\n' +
-  '/*\r\n' +
-  ' * resetYeahList\r\n' +
-  ' */\r\n' +
-  'on(YeahResetsActions.resetYeahList, (state) => ({\r\n' +
-  '  ...state,\r\n' +
-  '  yeahList: null,\r\n' +
+  '/*\n' +
+  ' * resetYeahList\n' +
+  ' */\n' +
+  'on(YeahResetsActions.resetYeahList, (state) => ({\n' +
+  '  ...state,\n' +
+  '  yeahList: null,\n' +
   '})),\n\n' +
-  '/*\r\n' +
-  '     * resetYeahAssets\r\n' +
-  '     */\r\n' +
-  '    on(YeahResetsActions.resetYeahAssets, (state) => ({...state,loadYeahListPending: false,\r\n' +
-  'loadYeahListSuccess: false,\r\n' +
-  'loadYeahListFailure: null,loadYeahByIdPending: false,\r\n' +
-  'loadYeahByIdSuccess: false,\r\n' +
-  'loadYeahByIdFailure: null,createYeahPending: false,\r\n' +
-  'createYeahSuccess: false,\r\n' +
-  'createYeahFailure: null,updateYeahPending: false,\r\n' +
-  'updateYeahSuccess: false,\r\n' +
-  'updateYeahFailure: null,deleteYeahPending: false,\r\n' +
-  'deleteYeahSuccess: false,\r\n' +
-  'deleteYeahFailure: null,})),\r\n' +
-  '  ];\r\n' +
-  '}\r\n';
+  '/*\n' +
+  '     * resetYeahAssets\n' +
+  '     */\n' +
+  '    on(YeahResetsActions.resetYeahAssets, (state) => ({...state,loadYeahListPending: false,\n' +
+  'loadYeahListSuccess: false,\n' +
+  'loadYeahListFailure: null,loadYeahByIdPending: false,\n' +
+  'loadYeahByIdSuccess: false,\n' +
+  'loadYeahByIdFailure: null,createYeahPending: false,\n' +
+  'createYeahSuccess: false,\n' +
+  'createYeahFailure: null,updateYeahPending: false,\n' +
+  'updateYeahSuccess: false,\n' +
+  'updateYeahFailure: null,deleteYeahPending: false,\n' +
+  'deleteYeahSuccess: false,\n' +
+  'deleteYeahFailure: null,})),\n' +
+  '  ];\n' +
+  '}\n';
 
-const DOMAIN_YEAH_SELECTORS_EMPTY = 'import { getExampleDomainState } from \'../example-domain.selectors\';\r\n' +
-  'import { State } from \'../example-domain.reducer\';\r\n' +
+const DOMAIN_YEAH_SELECTORS_EMPTY = 'import { getExampleDomainState } from \'../example-domain.selectors\';\n' +
+  'import { State } from \'../example-domain.reducer\';\n' +
   'import { createSelector } from \'@ngrx/store\';';
 
-const DOMAIN_YEAH_SELECTORS = 'import { getExampleDomainState } from \'../example-domain.selectors\';\r\n' +
-  'import { State } from \'../example-domain.reducer\';\r\n' +
+const DOMAIN_YEAH_SELECTORS = 'import { getExampleDomainState } from \'../example-domain.selectors\';\n' +
+  'import { State } from \'../example-domain.reducer\';\n' +
   'import { createSelector } from \'@ngrx/store\';\n\n' +
-  'export const getYeah = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.yeah\r\n' +
+  'export const getYeah = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.yeah\n' +
   ');\n\n' +
-  'export const getYeahList = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.yeahList\r\n' +
+  'export const getYeahList = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.yeahList\n' +
   ');\n\n' +
-  'export const getLoadYeahListPending = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.loadYeahListPending\r\n' +
+  'export const getLoadYeahListPending = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.loadYeahListPending\n' +
   ');\n\n' +
-  'export const getLoadYeahListSuccess = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.loadYeahListSuccess\r\n' +
+  'export const getLoadYeahListSuccess = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.loadYeahListSuccess\n' +
   ');\n\n' +
-  'export const getLoadYeahListFailure = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.loadYeahListFailure\r\n' +
+  'export const getLoadYeahListFailure = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.loadYeahListFailure\n' +
   ');\n\n' +
-  'export const getLoadYeahByIdPending = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.loadYeahByIdPending\r\n' +
+  'export const getLoadYeahByIdPending = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.loadYeahByIdPending\n' +
   ');\n\n' +
-  'export const getLoadYeahByIdSuccess = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.loadYeahByIdSuccess\r\n' +
+  'export const getLoadYeahByIdSuccess = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.loadYeahByIdSuccess\n' +
   ');\n\n' +
-  'export const getLoadYeahByIdFailure = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.loadYeahByIdFailure\r\n' +
+  'export const getLoadYeahByIdFailure = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.loadYeahByIdFailure\n' +
   ');\n\n' +
-  'export const getCreateYeahPending = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.createYeahPending\r\n' +
+  'export const getCreateYeahPending = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.createYeahPending\n' +
   ');\n\n' +
-  'export const getCreateYeahSuccess = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.createYeahSuccess\r\n' +
+  'export const getCreateYeahSuccess = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.createYeahSuccess\n' +
   ');\n\n' +
-  'export const getCreateYeahFailure = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.createYeahFailure\r\n' +
+  'export const getCreateYeahFailure = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.createYeahFailure\n' +
   ');\n\n' +
-  'export const getUpdateYeahPending = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.updateYeahPending\r\n' +
+  'export const getUpdateYeahPending = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.updateYeahPending\n' +
   ');\n\n' +
-  'export const getUpdateYeahSuccess = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.updateYeahSuccess\r\n' +
+  'export const getUpdateYeahSuccess = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.updateYeahSuccess\n' +
   ');\n\n' +
-  'export const getUpdateYeahFailure = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.updateYeahFailure\r\n' +
+  'export const getUpdateYeahFailure = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.updateYeahFailure\n' +
   ');\n\n' +
-  'export const getDeleteYeahPending = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.deleteYeahPending\r\n' +
+  'export const getDeleteYeahPending = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.deleteYeahPending\n' +
   ');\n\n' +
-  'export const getDeleteYeahSuccess = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.deleteYeahSuccess\r\n' +
+  'export const getDeleteYeahSuccess = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.deleteYeahSuccess\n' +
   ');\n\n' +
-  'export const getDeleteYeahFailure = createSelector(\r\n' +
-  '  getExampleDomainState,\r\n' +
-  '  (state: State) => state.deleteYeahFailure\r\n' +
+  'export const getDeleteYeahFailure = createSelector(\n' +
+  '  getExampleDomainState,\n' +
+  '  (state: State) => state.deleteYeahFailure\n' +
   ');\n\n';
