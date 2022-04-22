@@ -1,4 +1,5 @@
-import {joinPathFragments, Tree} from '@nrwl/devkit';
+import {Tree} from '@nrwl/devkit';
+import {joinPathFragments} from '../util.functions';
 import * as fs from 'fs';
 
 const TEMPLATE_VAR_REGEX = '<%=\\s*{key}\\s*%>';

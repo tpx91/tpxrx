@@ -1,6 +1,7 @@
-import {joinPathFragments, Tree} from '@nrwl/devkit';
+import {Tree} from '@nrwl/devkit';
 import {Names} from './names';
 import {__libDirName, set__LibDirName} from './globals';
+import {joinPathFragments} from './util.functions';
 
 export function getStateDomainFilePath(projectNs: Names, domainNs: Names, fileSuffix: string) {
   return joinPathFragments(__libDirName, projectNs.name, 'src', 'lib', '+state', domainNs.fileName, `${domainNs.fileName}.${fileSuffix}`);
