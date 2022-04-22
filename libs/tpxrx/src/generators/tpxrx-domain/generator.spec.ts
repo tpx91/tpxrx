@@ -29,6 +29,24 @@ describe('tpxrx domain generator', () => {
     }, generateLib);
   });
 
+  it('create domain fail: lib not found', async () => {
+    await expect(
+      generatorWrapper(tree, {
+        name: 'dooh',
+        project: 'example/no-domain'
+      }, generateDomain)
+    ).rejects.toThrowError('project module file example/no-domain not found');
+  });
+
+  it('create domain fail: domain already existing', async () => {
+    await expect(
+      generatorWrapper(tree, {
+      name: 'test',
+      project: 'example/domain'
+    }, generateDomain)
+    ).rejects.toThrowError('domain test already exists');
+  });
+
   it('create empty domain', async () => {
     await generatorWrapper(tree, {
       name: 'dooh',
