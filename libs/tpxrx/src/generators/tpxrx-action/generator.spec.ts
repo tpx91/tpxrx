@@ -209,6 +209,7 @@ const DOMAIN_TEST_ACTIONS_DEFAULT = 'import { createAction, props } from \'@ngrx
   ');\n' +
   'export const createDoohFailure = createAction(\n' +
   '  \'[ExampleDomain] createDoohFailure\',\n' +
+  '  props<{ error: Error }>()\n' +
   ');\n\n';
 
 const DOMAIN_TEST_ACTIONS =
