@@ -39,7 +39,7 @@ function validate(tree: Tree, projectNs: Names, domainNs: Names, actionsNs: Name
     throw new Error(`project module file ${projectNs.name} not found`);
   }
   if (!tree.children(getStateDomainPath(projectNs, domainNs))?.length) {
-    throw new Error(`domain ${domainNs.name} does not exists`);
+    throw new Error(`domain ${domainNs.name} not found`);
   }
 
   const actionsContent = tree.read(getStateDomainFilePath(projectNs, domainNs, 'actions.ts')).toString();

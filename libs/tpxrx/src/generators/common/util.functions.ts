@@ -143,3 +143,7 @@ export function getCrudActions(actionName: string): Action[] {
 export function isActionTypeReset(actionNs: Names): boolean {
   return actionNs.actionType === ActionType.RESET || actionNs.actionType === ActionType.RESET_ALL;
 }
+
+export function joinPathFragments(...fragments: string[]) {
+  return fragments.join('/');
+}
