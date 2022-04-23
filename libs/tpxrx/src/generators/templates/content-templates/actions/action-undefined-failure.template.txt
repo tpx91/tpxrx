@@ -1,3 +1,4 @@
 export const <%= actionPropertyName %>Failure = createAction(
   '[<%= projectClassName %>] <%= actionPropertyName %>Failure',
+  props<{ error: Error }>()
 );
