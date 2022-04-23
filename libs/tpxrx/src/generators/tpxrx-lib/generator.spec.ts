@@ -28,6 +28,10 @@ const domainYeahSelectorsPath = 'libs/example/domain/src/lib/+state/yeah/yeah.se
 describe('tpxrx lib generator', () => {
   let tree: Tree;
 
+  const read = (path: string): string => {
+    return tree.read(path).toString().replace(/\r/g, '');
+  }
+
   beforeEach(() => {
     tree = createTreeWithEmptyWorkspace(2);
     tree.write('.gitignore', '');
@@ -44,12 +48,11 @@ describe('tpxrx lib generator', () => {
     expect(tree.exists(exampleDomainReducerPath)).toBeTruthy();
     expect(tree.exists(exampleDomainSelectorsPath)).toBeTruthy();
 
-    const indexContent = tree.read(indexPath).toString();
-    const exampleDomainModuleContent = tree.read(exampleDomainModulePath).toString();
-    const exampleDomainFacadeContent = tree.read(exampleDomainFacadePath).toString();
-    const exampleDomainReducerContent = tree.read(exampleDomainReducerPath).toString();
-    const exampleDomainSelectorsContent = tree.read(exampleDomainSelectorsPath).toString();
-
+    const indexContent = read(indexPath);
+    const exampleDomainModuleContent = read(exampleDomainModulePath);
+    const exampleDomainFacadeContent = read(exampleDomainFacadePath);
+    const exampleDomainReducerContent = read(exampleDomainReducerPath);
+    const exampleDomainSelectorsContent = read(exampleDomainSelectorsPath);
 
     expect(indexContent).toBe(INDEX_CONTENT);
     expect(exampleDomainModuleContent).toBe(EXAMPLE_DOMAIN_MODULE_EMPTY);
@@ -86,27 +89,27 @@ describe('tpxrx lib generator', () => {
     expect(tree.exists(domainYeahReducerResetsPath)).toBeTruthy();
     expect(tree.exists(domainYeahSelectorsPath)).toBeTruthy();
 
-    const indexContent = tree.read(indexPath).toString();
-    const exampleDomainModuleContent = tree.read(exampleDomainModulePath).toString();
-    const exampleDomainFacadeContent = tree.read(exampleDomainFacadePath).toString();
-    const exampleDomainReducerContent = tree.read(exampleDomainReducerPath).toString();
-    const exampleDomainSelectorsContent = tree.read(exampleDomainSelectorsPath).toString();
-    const domainTestActionsContent = tree.read(domainTestActionsPath).toString();
-    const domainTestActionsResetsContent = tree.read(domainTestActionsResetsPath).toString();
-    const domainTestEffectsContent = tree.read(domainTestEffectsPath).toString();
-    const domainTestFacadeContent = tree.read(domainTestFacadePath).toString();
-    const domainTestFacadeResetsContent = tree.read(domainTestFacadeResetsPath).toString();
-    const domainTestReducerContent = tree.read(domainTestReducerPath).toString();
-    const domainTestReducerResetsContent = tree.read(domainTestReducerResetsPath).toString();
-    const domainTestSelectorsContent = tree.read(domainTestSelectorsPath).toString();
-    const domainYeahActionsContent = tree.read(domainYeahActionsPath).toString();
-    const domainYeahActionsResetsContent = tree.read(domainYeahActionsResetsPath).toString();
-    const domainYeahEffectsContent = tree.read(domainYeahEffectsPath).toString();
-    const domainYeahFacadeContent = tree.read(domainYeahFacadePath).toString();
-    const domainYeahFacadeResetsContent = tree.read(domainYeahFacadeResetsPath).toString();
-    const domainYeahReducerContent = tree.read(domainYeahReducerPath).toString();
-    const domainYeahReducerResetsContent = tree.read(domainYeahReducerResetsPath).toString();
-    const domainYeahSelectorsContent = tree.read(domainYeahSelectorsPath).toString();
+    const indexContent = read(indexPath);
+    const exampleDomainModuleContent = read(exampleDomainModulePath);
+    const exampleDomainFacadeContent = read(exampleDomainFacadePath);
+    const exampleDomainReducerContent = read(exampleDomainReducerPath);
+    const exampleDomainSelectorsContent = read(exampleDomainSelectorsPath);
+    const domainTestActionsContent = read(domainTestActionsPath);
+    const domainTestActionsResetsContent = read(domainTestActionsResetsPath);
+    const domainTestEffectsContent = read(domainTestEffectsPath);
+    const domainTestFacadeContent = read(domainTestFacadePath);
+    const domainTestFacadeResetsContent = read(domainTestFacadeResetsPath);
+    const domainTestReducerContent = read(domainTestReducerPath);
+    const domainTestReducerResetsContent = read(domainTestReducerResetsPath);
+    const domainTestSelectorsContent = read(domainTestSelectorsPath);
+    const domainYeahActionsContent = read(domainYeahActionsPath);
+    const domainYeahActionsResetsContent = read(domainYeahActionsResetsPath);
+    const domainYeahEffectsContent = read(domainYeahEffectsPath);
+    const domainYeahFacadeContent = read(domainYeahFacadePath);
+    const domainYeahFacadeResetsContent = read(domainYeahFacadeResetsPath);
+    const domainYeahReducerContent = read(domainYeahReducerPath);
+    const domainYeahReducerResetsContent = read(domainYeahReducerResetsPath);
+    const domainYeahSelectorsContent = read(domainYeahSelectorsPath);
 
     expect(indexContent).toBe(INDEX_CONTENT);
     expect(exampleDomainModuleContent).toBe(EXAMPLE_DOMAIN_MODULE);
@@ -160,27 +163,27 @@ describe('tpxrx lib generator', () => {
     expect(tree.exists(domainYeahReducerResetsPath)).toBeTruthy();
     expect(tree.exists(domainYeahSelectorsPath)).toBeTruthy();
 
-    const indexContent = tree.read(indexPath).toString();
-    const exampleDomainModuleContent = tree.read(exampleDomainModulePath).toString();
-    const exampleDomainFacadeContent = tree.read(exampleDomainFacadePath).toString();
-    const exampleDomainReducerContent = tree.read(exampleDomainReducerPath).toString();
-    const exampleDomainSelectorsContent = tree.read(exampleDomainSelectorsPath).toString();
-    const domainTestActionsContent = tree.read(domainTestActionsPath).toString();
-    const domainTestActionsResetsContent = tree.read(domainTestActionsResetsPath).toString();
-    const domainTestEffectsContent = tree.read(domainTestEffectsPath).toString();
-    const domainTestFacadeContent = tree.read(domainTestFacadePath).toString();
-    const domainTestFacadeResetsContent = tree.read(domainTestFacadeResetsPath).toString();
-    const domainTestReducerContent = tree.read(domainTestReducerPath).toString();
-    const domainTestReducerResetsContent = tree.read(domainTestReducerResetsPath).toString();
-    const domainTestSelectorsContent = tree.read(domainTestSelectorsPath).toString();
-    const domainYeahActionsContent = tree.read(domainYeahActionsPath).toString();
-    const domainYeahActionsResetsContent = tree.read(domainYeahActionsResetsPath).toString();
-    const domainYeahEffectsContent = tree.read(domainYeahEffectsPath).toString();
-    const domainYeahFacadeContent = tree.read(domainYeahFacadePath).toString();
-    const domainYeahFacadeResetsContent = tree.read(domainYeahFacadeResetsPath).toString();
-    const domainYeahReducerContent = tree.read(domainYeahReducerPath).toString();
-    const domainYeahReducerResetsContent = tree.read(domainYeahReducerResetsPath).toString();
-    const domainYeahSelectorsContent = tree.read(domainYeahSelectorsPath).toString();
+    const indexContent = read(indexPath);
+    const exampleDomainModuleContent = read(exampleDomainModulePath);
+    const exampleDomainFacadeContent = read(exampleDomainFacadePath);
+    const exampleDomainReducerContent = read(exampleDomainReducerPath);
+    const exampleDomainSelectorsContent = read(exampleDomainSelectorsPath);
+    const domainTestActionsContent = read(domainTestActionsPath);
+    const domainTestActionsResetsContent = read(domainTestActionsResetsPath);
+    const domainTestEffectsContent = read(domainTestEffectsPath);
+    const domainTestFacadeContent = read(domainTestFacadePath);
+    const domainTestFacadeResetsContent = read(domainTestFacadeResetsPath);
+    const domainTestReducerContent = read(domainTestReducerPath);
+    const domainTestReducerResetsContent = read(domainTestReducerResetsPath);
+    const domainTestSelectorsContent = read(domainTestSelectorsPath);
+    const domainYeahActionsContent = read(domainYeahActionsPath);
+    const domainYeahActionsResetsContent = read(domainYeahActionsResetsPath);
+    const domainYeahEffectsContent = read(domainYeahEffectsPath);
+    const domainYeahFacadeContent = read(domainYeahFacadePath);
+    const domainYeahFacadeResetsContent = read(domainYeahFacadeResetsPath);
+    const domainYeahReducerContent = read(domainYeahReducerPath);
+    const domainYeahReducerResetsContent = read(domainYeahReducerResetsPath);
+    const domainYeahSelectorsContent = read(domainYeahSelectorsPath);
 
     expect(indexContent).toBe(INDEX_CONTENT);
     expect(exampleDomainModuleContent).toBe(EXAMPLE_DOMAIN_MODULE);

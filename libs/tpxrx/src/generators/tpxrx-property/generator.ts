@@ -41,7 +41,7 @@ function validate(tree: Tree, projectNs: Names, domainNs: Names, propertyNs: Nam
     throw new Error(`project module file ${projectNs.name} not found`);
   }
   if (!tree.children(getStateDomainPath(projectNs, domainNs))?.length) {
-    throw new Error(`domain ${domainNs.name} does not exists`);
+    throw new Error(`domain ${domainNs.name} not found`);
   }
   if (array && !propertyNs.name.endsWith('List')) {
     throw new Error(`array property name has to end with List, e.g. ${propertyNs.propertyName}List`);

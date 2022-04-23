@@ -19,6 +19,10 @@ const domainDoohSelectorsPath = 'libs/example/domain/src/lib/+state/dooh/dooh.se
 describe('tpxrx domain generator', () => {
   let tree: Tree;
 
+  const read = (path: string): string => {
+    return tree.read(path).toString().replace(/\r/g, '');
+  }
+
   beforeEach(async() => {
     tree = createTreeWithEmptyWorkspace(2);
     tree.write('.gitignore', '');
@@ -62,17 +66,17 @@ describe('tpxrx domain generator', () => {
     expect(tree.exists(domainDoohReducerResetsPath)).toBeTruthy();
     expect(tree.exists(domainDoohSelectorsPath)).toBeTruthy();
 
-    const exampleDomainModuleContent = tree.read(exampleDomainModulePath).toString();
-    const exampleDomainFacadeContent = tree.read(exampleDomainFacadePath).toString();
-    const exampleDomainReducerContent = tree.read(exampleDomainReducerPath).toString();
-    const domainDoohActionsContent = tree.read(domainDoohActionsPath).toString();
-    const domainDoohActionsResetsContent = tree.read(domainDoohActionsResetsPath).toString();
-    const domainDoohEffectsContent = tree.read(domainDoohEffectsPath).toString();
-    const domainDoohFacadeContent = tree.read(domainDoohFacadePath).toString();
-    const domainDoohFacadeResetsContent = tree.read(domainDoohFacadeResetsPath).toString();
-    const domainDoohReducerContent = tree.read(domainDoohReducerPath).toString();
-    const domainDoohReducerResetsContent = tree.read(domainDoohReducerResetsPath).toString();
-    const domainDoohSelectorsContent = tree.read(domainDoohSelectorsPath).toString();
+    const exampleDomainModuleContent = read(exampleDomainModulePath);
+    const exampleDomainFacadeContent = read(exampleDomainFacadePath);
+    const exampleDomainReducerContent = read(exampleDomainReducerPath);
+    const domainDoohActionsContent = read(domainDoohActionsPath);
+    const domainDoohActionsResetsContent = read(domainDoohActionsResetsPath);
+    const domainDoohEffectsContent = read(domainDoohEffectsPath);
+    const domainDoohFacadeContent = read(domainDoohFacadePath);
+    const domainDoohFacadeResetsContent = read(domainDoohFacadeResetsPath);
+    const domainDoohReducerContent = read(domainDoohReducerPath);
+    const domainDoohReducerResetsContent = read(domainDoohReducerResetsPath);
+    const domainDoohSelectorsContent = read(domainDoohSelectorsPath);
 
     expect(exampleDomainModuleContent).toBe(EXAMPLE_DOMAIN_MODULE);
     expect(exampleDomainFacadeContent).toBe(EXAMPLE_DOMAIN_FACADE);
@@ -103,17 +107,17 @@ describe('tpxrx domain generator', () => {
     expect(tree.exists(domainDoohReducerResetsPath)).toBeTruthy();
     expect(tree.exists(domainDoohSelectorsPath)).toBeTruthy();
 
-    const exampleDomainModuleContent = tree.read(exampleDomainModulePath).toString();
-    const exampleDomainFacadeContent = tree.read(exampleDomainFacadePath).toString();
-    const exampleDomainReducerContent = tree.read(exampleDomainReducerPath).toString();
-    const domainDoohActionsContent = tree.read(domainDoohActionsPath).toString();
-    const domainDoohActionsResetsContent = tree.read(domainDoohActionsResetsPath).toString();
-    const domainDoohEffectsContent = tree.read(domainDoohEffectsPath).toString();
-    const domainDoohFacadeContent = tree.read(domainDoohFacadePath).toString();
-    const domainDoohFacadeResetsContent = tree.read(domainDoohFacadeResetsPath).toString();
-    const domainDoohReducerContent = tree.read(domainDoohReducerPath).toString();
-    const domainDoohReducerResetsContent = tree.read(domainDoohReducerResetsPath).toString();
-    const domainDoohSelectorsContent = tree.read(domainDoohSelectorsPath).toString();
+    const exampleDomainModuleContent = read(exampleDomainModulePath);
+    const exampleDomainFacadeContent = read(exampleDomainFacadePath);
+    const exampleDomainReducerContent = read(exampleDomainReducerPath);
+    const domainDoohActionsContent = read(domainDoohActionsPath);
+    const domainDoohActionsResetsContent = read(domainDoohActionsResetsPath);
+    const domainDoohEffectsContent = read(domainDoohEffectsPath);
+    const domainDoohFacadeContent = read(domainDoohFacadePath);
+    const domainDoohFacadeResetsContent = read(domainDoohFacadeResetsPath);
+    const domainDoohReducerContent = read(domainDoohReducerPath);
+    const domainDoohReducerResetsContent = read(domainDoohReducerResetsPath);
+    const domainDoohSelectorsContent = read(domainDoohSelectorsPath);
 
     expect(exampleDomainModuleContent).toBe(EXAMPLE_DOMAIN_MODULE);
     expect(exampleDomainFacadeContent).toBe(EXAMPLE_DOMAIN_FACADE);
