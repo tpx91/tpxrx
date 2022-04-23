@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isActionTypeReset = exports.getCrudActions = exports.firstLetterUppercase = exports.toFormattedNames = exports.toArray = exports.toSingular = exports.toPuralFileName = exports.toPural = exports.findEndIndex = exports.findStartIndex = exports.getRegexMatch = exports.getOns = exports.getInitialState = exports.getState = exports.getInjection = exports.getFailure = exports.getSuccess = exports.getPending = exports.getService = exports.getSelectors = exports.getEffects = exports.getFacade = exports.getActions = void 0;
+exports.joinPathFragments = exports.isActionTypeReset = exports.getCrudActions = exports.firstLetterUppercase = exports.toFormattedNames = exports.toArray = exports.toSingular = exports.toPuralFileName = exports.toPural = exports.findEndIndex = exports.findStartIndex = exports.getRegexMatch = exports.getOns = exports.getInitialState = exports.getState = exports.getInjection = exports.getFailure = exports.getSuccess = exports.getPending = exports.getService = exports.getSelectors = exports.getEffects = exports.getFacade = exports.getActions = void 0;
 const names_1 = require("./names");
 function getActions(name) {
     return `${name}Actions`;
@@ -145,4 +145,8 @@ function isActionTypeReset(actionNs) {
     return actionNs.actionType === names_1.ActionType.RESET || actionNs.actionType === names_1.ActionType.RESET_ALL;
 }
 exports.isActionTypeReset = isActionTypeReset;
+function joinPathFragments(...fragments) {
+    return fragments.join('/');
+}
+exports.joinPathFragments = joinPathFragments;
 //# sourceMappingURL=util.functions.js.map

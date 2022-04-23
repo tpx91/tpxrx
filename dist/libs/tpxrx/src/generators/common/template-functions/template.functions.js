@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTemplatePath = exports.getTemplate = void 0;
-const devkit_1 = require("@nrwl/devkit");
+const util_functions_1 = require("../util.functions");
 const fs = require("fs");
 const TEMPLATE_VAR_REGEX = '<%=\\s*{key}\\s*%>';
 const TEMPLATE_VAR_REGEX_2 = '<%=\\s*\\w+\\s*%>';
@@ -20,7 +20,7 @@ function getTemplate(tree, templatePath, substitutions) {
 }
 exports.getTemplate = getTemplate;
 function getTemplatePath(dir, filename) {
-    return (0, devkit_1.joinPathFragments)(__dirname, '..', '..', 'templates', 'content-templates', dir, `${filename}.template.txt`);
+    return (0, util_functions_1.joinPathFragments)(__dirname, '..', '..', 'templates', 'content-templates', dir, `${filename}.template.txt`);
 }
 exports.getTemplatePath = getTemplatePath;
 //# sourceMappingURL=template.functions.js.map

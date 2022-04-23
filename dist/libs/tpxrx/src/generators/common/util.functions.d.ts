@@ -24,3 +24,4 @@ export declare function toFormattedNames(names: Names, format: 'project' | 'doma
 export declare function firstLetterUppercase(value: string): string;
 export declare function getCrudActions(actionName: string): Action[];
 export declare function isActionTypeReset(actionNs: Names): boolean;
+export declare function joinPathFragments(...fragments: string[]): string;

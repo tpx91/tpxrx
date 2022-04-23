@@ -1,3 +1,10 @@
+## [0.0.7](https://github.com/tpx91/tpxrx/compare/v0.0.6...v0.0.7) (2022-04-23)
+
+
+### Bug Fixes
+
+* add error property to failure action ([122e98d](https://github.com/tpx91/tpxrx/commit/122e98d86699a3a94e952e9785a7d19929f531a4))
+
 ## [0.0.6](https://github.com/tpx91/tpxrx/compare/v0.0.5...v0.0.6) (2022-04-21)
 
 
