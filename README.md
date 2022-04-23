@@ -12,7 +12,7 @@ Install @tpx1/tpxrx via npm:
 npm i @tpx1/tpxrx@latest
 ```
 
-##Store concepts
+## Store concepts
 tpxrx combines two goals to improve ngrx stores.
 
 1) Split store contents into smaller parts to make store more clear.
